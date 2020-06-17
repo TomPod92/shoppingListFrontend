@@ -15,11 +15,6 @@ export const Button = (props) => {
     );
 
     useEffect(() => {
-        // setClassesState({
-        //     ...classesState,
-        //     [props.type]: !classesState[props.type]
-        // })
-
         setClassesState(prevState => ({
             ...prevState,
             [props.type]: !prevState[props.type]

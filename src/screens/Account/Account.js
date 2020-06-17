@@ -3,6 +3,8 @@ import './account.scss';
 
 export const Account = (props) => {
   return (
-    <div className="page account">Account</div>
+    <div className="page">
+      <div>Account</div>
+    </div>
   )
 };
