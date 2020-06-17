@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { FaUserCircle, FaListOl, FaPlusCircle, FaShoppingCart } from "react-icons/fa";
+import { FaUserCircle, FaPlusCircle, FaShoppingCart } from "react-icons/fa";
 import { MdStore } from 'react-icons/md'
 
 import './navItem.scss';
