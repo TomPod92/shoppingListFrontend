@@ -5,6 +5,7 @@
     --color-text: #2E2D2C;
     --color-success: #3E981E;
     --color-error: #CA4836;
+    --border-radius: 10px;
 }
   
 *, *:after, *:before {
@@ -18,7 +19,17 @@ html {
 }
 
 body {
-    background-color: var(--color-background);
+    background-color: var(--color-primary);
     box-sizing: border-box;
     font-family: 'Lato', sans-serif;
+}
+// ------------------------------------------------
+// ---------------------COMMON---------------------
+// ------------------------------------------------
+.page {
+    min-height: 100vh;
+    padding: 2rem;
+    margin-top: 4.4rem;
+    background: var(--color-background);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
 }

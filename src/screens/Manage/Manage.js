@@ -3,6 +3,6 @@ import './manage.scss';
 
 export const Manage = (props) => {
   return (
-    <div className="manage">Manage</div>
+    <div className="page manage">Manage</div>
   )
 };

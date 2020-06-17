@@ -3,6 +3,6 @@ import './login.scss';
 
 export const Login = (props) => {
   return (
-    <div className="login">Loginn</div>
+    <div className="page login">Loginn</div>
   )
 };

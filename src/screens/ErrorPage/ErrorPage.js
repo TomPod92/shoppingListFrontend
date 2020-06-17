@@ -3,6 +3,6 @@ import './errorPage.scss';
 
 export const ErrorPage = (props) => {
   return (
-    <div className="errorPage">ErrorPage</div>
+    <div className="page errorPage">ErrorPage</div>
   )
 };
