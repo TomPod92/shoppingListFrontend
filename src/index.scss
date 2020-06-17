@@ -1,0 +1,24 @@
+:root {
+    --color-primary: #F4C70B;
+    --color-grey: #F6F0EE;
+    --color-background: #FFFAF9;
+    --color-text: #2E2D2C;
+    --color-success: #3E981E;
+    --color-error: #CA4836;
+}
+  
+*, *:after, *:before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    background-color: var(--color-background);
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
