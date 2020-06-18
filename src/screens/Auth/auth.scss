@@ -20,11 +20,22 @@
 }
 
 .logo {
-    display: flex;
-    justify-content: center;
+    @include centered;
+    position: relative;
     margin-top: 4rem;
-    margin-bottom: 4rem;
+    margin-bottom: 5rem;
     font-size: 12rem;
+
+    &:after {
+        position: absolute;
+        bottom: -1.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        content: '';
+        width: 80%;
+        height: 2px;
+        background: var(--color-primary);
+    }
 }
 
 .loginButton {
