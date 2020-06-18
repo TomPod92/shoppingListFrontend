@@ -4,8 +4,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Header } from './screens/Header/Header';
 import { Navigation } from './screens/Navigation/Navigation';
 
-import { Login } from './screens/Login/Login';
-import { Register } from './screens/Register/Register';
+import { Login } from './screens/Auth/Login';
+import { Register } from './screens/Auth/Register';
 import { Products } from './screens/Products/Products';
 import { List } from './screens/List/List';
 import { Account } from './screens/Account/Account';
