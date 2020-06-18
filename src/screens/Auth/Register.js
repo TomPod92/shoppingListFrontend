@@ -56,9 +56,9 @@ export const Register = (props) => {
         </div>
 
       <form className="login__form" onSubmit={handleRegisterUser}>
-        <input type="text" name="email" className="input login__input" value={formData.email} placeholder="Email" onChange={handleInputChange}/>
-        <input type="password" name="password" className="input login__input" value={formData.password} placeholder="Hasło" onChange={handleInputChange}/>
-        <input type="password" name="password2" className="input login__input" value={formData.password2} placeholder="Potwierdz hasło" onChange={handleInputChange}/>
+        <input type="text" name="email" className="login__input" value={formData.email} placeholder="Email" onChange={handleInputChange}/>
+        <input type="password" name="password" className="login__input" value={formData.password} placeholder="Hasło" onChange={handleInputChange}/>
+        <input type="password" name="password2" className="login__input" value={formData.password2} placeholder="Potwierdz hasło" onChange={handleInputChange}/>
         <button className="button button--primary submitButton" type="submit">Zarejestruj</button>
       </form>
 

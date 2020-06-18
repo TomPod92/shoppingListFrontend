@@ -47,15 +47,15 @@ export const Login = (props) => {
       </div>
 
       <form className="login__form" onSubmit={handleLoginUser}>
-        <input type="text" name="email" className="input login__input" value={formData.email} placeholder="Email" onChange={handleInputChange}/>
-        <input type="password" name="password" className="input login__input" value={formData.password} placeholder="Hasło" onChange={handleInputChange}/>
-        <button className="button button--primary submitButton" type="submit">Zaloguj</button>
+        <input type="text" name="email" className="login__input" value={formData.email} placeholder="Email" onChange={handleInputChange}/>
+        <input type="password" name="password" className="login__input" value={formData.password} placeholder="Hasło" onChange={handleInputChange}/>
+        <button className="submitButton" type="submit">Zaloguj</button>
       </form>
 
       <p className="login__info">Nie masz jeszcze konta?</p>
       <p className="login__info">Zarejestruj się!</p>
 
-      <button className="button button--secondary otherButton">
+      <button className="otherButton">
         <Link to="/register">Rejestracja</Link>
       </button>
 
