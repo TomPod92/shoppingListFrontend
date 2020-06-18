@@ -34,7 +34,7 @@ export const Login = (props) => {
       <p className="login__info">Zarejestruj się!</p>
 
       <button className="button button--secondary registerButton">
-        <Link to="/register">Register</Link>
+        <Link to="/register">Rejestracja</Link>
       </button>
     </div>
   )
