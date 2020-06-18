@@ -14,16 +14,32 @@ export const Login = (props) => {
     email: '',
     password: ''
   });
-
+// -------------------------------------------------------------------
   const handleInputChange = event => setFormData({...formData, [event.target.name]: event.target.value});
-
+// -------------------------------------------------------------------
   const handleLoginUser = (event) => {
     event.preventDefault();
 
-    if(!formData.email.trim()) toast.error(<Toast info="Podaj adres email"/>);
-    if(!formData.password.trim()) toast.error(<Toast info="Podaj hasło"/>);
+    if(validateForm()) {
+      console.log('zaloguj')
+    }
   };
+// -------------------------------------------------------------------
+  const validateForm = () => {
+    let valid = true;
 
+    if(!formData.email.trim()) {
+      toast.error(<Toast info="Podaj adres email"/>);
+      valid = false;
+    }
+    if(!formData.password.trim()) {
+      toast.error(<Toast info="Podaj hasło"/>);
+      valid = false;
+    }
+
+    return valid;
+  }
+// -------------------------------------------------------------------
   return ( 
     <div className="page login">
       <div className="logo">

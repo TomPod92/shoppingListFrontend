@@ -21,8 +21,8 @@
 .logo {
     @include centered;
     position: relative;
-    margin-top: 4rem;
-    margin-bottom: 5rem;
+    margin-top: 3rem;
+    margin-bottom: 4rem;
     font-size: 12rem;
 
     &:after {
@@ -44,5 +44,5 @@
 
 .otherButton {
     display: block;
-    margin: 1rem auto 0;
+    margin: 1rem auto 5rem auto;
 }
