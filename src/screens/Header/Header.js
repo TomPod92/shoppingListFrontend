@@ -12,7 +12,7 @@ export const Header = (props) => {
     else if(location === 'products') return "Produkty"
     else if(location === 'list') return "Lista zakupów"
     else if(location === 'manage') return "Zarządzaj"
-    else if(location === '') return "Witaj!"
+    else if(location === '' || location === 'register' || location === 'login') return "Witaj!"
   }
 
   return (

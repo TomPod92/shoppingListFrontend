@@ -5,6 +5,7 @@ import { Header } from './screens/Header/Header';
 import { Navigation } from './screens/Navigation/Navigation';
 
 import { Login } from './screens/Login/Login';
+import { Register } from './screens/Register/Register';
 import { Products } from './screens/Products/Products';
 import { List } from './screens/List/List';
 import { Account } from './screens/Account/Account';
@@ -20,6 +21,8 @@ const App = () => {
         <Header />
 
         <Switch>
+          <Route path="/login" component={Login} exact />
+          <Route path="/register" component={Register} exact />
           <Route path="/products" component={Products} exact />
           <Route path="/list" component={List} exact />
           <Route path="/account" component={Account} exact />
