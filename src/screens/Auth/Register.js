@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux' // test
+import { Link, Redirect } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import { Toast } from '../../components/Toast/Toast';
+import { createUser } from '../../redux/actions/user.actions';
 
 import './auth.scss';
 
@@ -13,6 +15,9 @@ export const Register = (props) => {
     password: '',
     password2: ''
   });
+
+  const dispatch = useDispatch(); // test
+  const isAuthenticated = useSelector(state => state.user.isAuth);
 // -------------------------------------------------------------------
   const handleInputChange = event => setFormData({...formData, [event.target.name]: event.target.value});
 // -------------------------------------------------------------------
@@ -20,7 +25,10 @@ export const Register = (props) => {
     event.preventDefault();
 
     if(validateForm()) {
-      console.log('zarejestruj')
+      dispatch(createUser({
+        email: formData.email,
+        password: formData.password
+      }));
     }
   };
 // -------------------------------------------------------------------
@@ -33,6 +41,10 @@ export const Register = (props) => {
     }
     if(!formData.password.trim()) {
       toast.error(<Toast info="Podaj hasło"/>);
+      valid = false;
+    }
+    else if(formData.password.trim() && formData.password.trim().length <= 6) {
+      toast.error(<Toast info="Hasło powinno zawierac przynajmnniej 7 znaków"/>);
       valid = false;
     }
     else {
@@ -49,6 +61,10 @@ export const Register = (props) => {
     return valid;
   }
 // -------------------------------------------------------------------
+  if(isAuthenticated) {
+    return <Redirect to="/products" />
+  }
+
   return (
     <div className="page register">
         <div className="logo">
@@ -68,18 +84,6 @@ export const Register = (props) => {
       <button className="button button--secondary otherButton">
         <Link to="/login">Logowanie</Link>
       </button>
-
-      <ToastContainer
-          position="bottom-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnVisibilityChange
-          draggable
-          pauseOnHover
-      ></ToastContainer>
     </div>
   )
 };

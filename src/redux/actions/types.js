@@ -1,0 +1,14 @@
+export const GET_SECTIONS = 'GET_SECTIONS';
+export const CREATE_SECTION = 'CREATE_SECTION';
+export const REMOVE_SECTION = 'REMOVE_SECTION';
+
+export const CREATE_USER_SUCCESS = 'CREATE_USER_SUCCESS';
+export const CREATE_USER_FAIL = 'CREATE_USER_FAIL';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const AUTOLOGIN_SUCCESS = 'AUTOLOGIN_SUCCESS';
+export const AUTOLOGIN_FAIL = 'AUTOLOGIN_FAIL';
+export const LOGOUT = 'LOGOUT';
+export const GET_USER = 'GET_USER';
+export const UPDATE_USER = 'UPDATE_USER';
+export const DELETE_USER = 'DELETE_USER';

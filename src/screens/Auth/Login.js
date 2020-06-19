@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux' // test
+import { Link, Redirect } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa'
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
+import { login } from '../../redux/actions/user.actions';
 import { Toast } from '../../components/Toast/Toast';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,6 +16,8 @@ export const Login = (props) => {
     email: '',
     password: ''
   });
+  const dispatch = useDispatch(); // test
+  const isAuthenticated = useSelector(state => state.user.isAuth);
 // -------------------------------------------------------------------
   const handleInputChange = event => setFormData({...formData, [event.target.name]: event.target.value});
 // -------------------------------------------------------------------
@@ -21,7 +25,10 @@ export const Login = (props) => {
     event.preventDefault();
 
     if(validateForm()) {
-      console.log('zaloguj')
+      dispatch(login({
+        email: formData.email,
+        password: formData.password
+      }))
     }
   };
 // -------------------------------------------------------------------
@@ -40,6 +47,10 @@ export const Login = (props) => {
     return valid;
   }
 // -------------------------------------------------------------------
+  if(isAuthenticated) {
+    return <Redirect to="/products" />
+  }
+  
   return ( 
     <div className="page login">
       <div className="logo">
@@ -58,18 +69,6 @@ export const Login = (props) => {
       <button className="otherButton">
         <Link to="/register">Rejestracja</Link>
       </button>
-
-      <ToastContainer
-          position="bottom-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnVisibilityChange
-          draggable
-          pauseOnHover
-      ></ToastContainer>
     </div>
   )
 };
