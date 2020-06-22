@@ -27,12 +27,7 @@ if(localStorage.getItem('shoppingListToken')) {
 const App = () => {
 
   useEffect(() => {
-    // if(localStorage.shoppingListToken) {
-      // setAuthToken(localStorage.shoppingListToken);
       store.dispatch(autoLogin())
-      console.log('----------------------------')
-      console.log(localStorage.shoppingListToken)
-    // }
   }, []);
   
   return (

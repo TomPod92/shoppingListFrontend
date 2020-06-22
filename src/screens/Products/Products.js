@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+
 import { SectionHeader } from '../../components/SectionHeader/SectionHeader';
+import { ProductListItem } from '../../components/ProductListItem/ProductListItem';
+import { Section } from '../../components/Section/Section';
+import { Spinner } from '../../components/Spinner/Spinner';
 import { getALLProducts } from '../../redux/actions/products.actions';
 import { getALLSections } from '../../redux/actions/sections.actions';
 
@@ -22,14 +26,14 @@ export const Products = (props) => {
     }
   }, [dispatch, isAuthenticated])
 
+  if(loadingProducts || loadingSections) {
+    return <Spinner />
+  }
+
   return (
     <div className="page products">
-      Products
-      <SectionHeader name="Nabiał"/>
-      <SectionHeader name="Słodycze"/>
-      <SectionHeader name="Warzywa"/>
-      <SectionHeader name="Mięsa"/>
-      {loadingProducts && loadingSections && "loading..."}
+      {/* <Spinner /> */}
+      {sections.map(section => <Section key={section._id} header={section.name} products={products.filter(product => product.section === section.name)}/>)}
     </div>
   )
 };

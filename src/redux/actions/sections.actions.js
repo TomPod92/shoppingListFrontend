@@ -10,7 +10,6 @@ export const getALLSections = () => async dispatch => {
         dispatch({ type: GET_ALL_SECTIONS_REQUEST });
 
         const res = await axios.get('http://localhost:5000/sections');
-
         dispatch({
             type: GET_ALL_SECTIONS_SUCCESS,
             sections: res.data

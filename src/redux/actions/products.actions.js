@@ -18,7 +18,7 @@ export const getALLProducts = () => async dispatch => {
     } catch (error) {
         dispatch({ type: GET_ALL_PRODUCTS_FAIL });
         console.error(error.response)
-        toast.error(<Toast info={error.response.data.error}/>);
+        // toast.error(<Toast info={error.response.data.error}/>);
     }
 }
 

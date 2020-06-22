@@ -1,0 +1,16 @@
+@import '../../index.scss';
+
+.productListItem {
+    @include listItem;
+    background: var(--color-grey);
+    width: 80%;
+
+    &__toBuy {
+        font-size: 2rem;
+    }
+
+    &__toBuy--green { color: var(--color-success) }
+
+    &__toBuy--red { color: var(--color-error) }
+
+}
