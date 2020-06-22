@@ -19,7 +19,7 @@ html {
 }
 
 body {
-    background-color: var(--color-primary);
+    background-color: var(--color-primary); // test
     color: var(--color-text);
     box-sizing: border-box;
     font-family: 'Lato', sans-serif;
@@ -28,7 +28,7 @@ body {
 // ---------------------COMMON---------------------
 // ------------------------------------------------
 .page {
-    min-height: calc(100vh - 45px);
+    min-height: calc(100vh - 44px);
     padding: 2rem;
     margin-top: 4.4rem;
     background: var(--color-background);

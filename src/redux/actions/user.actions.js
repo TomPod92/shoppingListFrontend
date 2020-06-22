@@ -2,6 +2,8 @@ import React from 'react'; // test
 import { CREATE_USER_SUCCESS, CREATE_USER_FAIL, LOGIN_SUCCESS, LOGIN_FAIL, AUTOLOGIN_SUCCESS, AUTOLOGIN_FAIL,  LOGOUT, GET_USER, UPDATE_USER, DELETE_USER } from '../actions/types';
 import axios from 'axios';
 import { toast } from 'react-toastify'; // test
+
+import { setAuthToken } from '../../helpers/setAuthToken';
 import { Toast } from '../../components/Toast/Toast'; // test
 // -------------------------------------------------------------------
 export const createUser = ({ email, password }) => async dispatch => {
@@ -46,6 +48,11 @@ export const login = ({ email, password }) => async dispatch => {
 }
 // -------------------------------------------------------------------
 export const autoLogin = () => async dispatch => {
+    // Jeżeli w localStorage znajduje sie już token dodaj go do header'a wszystkich zapytań
+    if(localStorage.getItem('shoppingListToken')) {
+        setAuthToken(localStorage.getItem('shoppingListToken'));
+    }
+
     try {
         const res = await axios.get('http://localhost:5000/users/me');
         dispatch({ 

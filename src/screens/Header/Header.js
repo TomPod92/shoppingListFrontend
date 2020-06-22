@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux' // test
+import { useDispatch, useSelector } from 'react-redux' // test
 import { useLocation } from 'react-router-dom';
 import { FaPowerOff } from 'react-icons/fa';
 
@@ -10,6 +10,7 @@ import './header.scss';
 export const Header = (props) => {
   let location = useLocation().pathname.split('/')[1];
   const dispatch = useDispatch(); // test
+  const isAuthenticated = useSelector(state => state.user.isAuth);
 
   const title = () => {
     if(location === 'account') return "Ustawienia konta"
@@ -24,9 +25,12 @@ export const Header = (props) => {
   return (
     <div className="header">
       <h1 className="header__title">{title()}</h1>
-      <div className="header__icon" onClick={handleLogout}>
-         <FaPowerOff/>
-      </div>
+      {isAuthenticated && (
+        <div className="header__icon" onClick={handleLogout}>
+          <FaPowerOff/>
+        </div>
+      )}
+      
     </div>
   )
 };

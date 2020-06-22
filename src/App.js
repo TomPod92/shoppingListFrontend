@@ -19,15 +19,20 @@ import { ErrorPage } from './screens/ErrorPage/ErrorPage';
 import './app.scss';
 import { setAuthToken } from './helpers/setAuthToken';
 
-
+// Jeżeli w localStorage znajduje sie już token dodaj go do header'a wszystkich zapytań
+if(localStorage.getItem('shoppingListToken')) {
+  setAuthToken(localStorage.getItem('shoppingListToken'));
+}
 
 const App = () => {
 
   useEffect(() => {
-    if(localStorage.shoppingListToken) {
-      setAuthToken(localStorage.shoppingListToken);
+    // if(localStorage.shoppingListToken) {
+      // setAuthToken(localStorage.shoppingListToken);
       store.dispatch(autoLogin())
-    }
+      console.log('----------------------------')
+      console.log(localStorage.shoppingListToken)
+    // }
   }, []);
   
   return (
