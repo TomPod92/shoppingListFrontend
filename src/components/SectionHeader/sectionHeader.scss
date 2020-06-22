@@ -1,0 +1,19 @@
+@import '../../index.scss';
+
+.sectionHeader {
+    @include centered;
+    width: 70%;
+    font-size: 1.8rem;
+    font-weight: bold;
+
+    &__name {
+        margin: 0 5px;
+        text-align: center;
+    }
+
+    &__line {
+        flex: 1;
+        height: 2px;
+        background: var(--color-primary);
+    }
+}

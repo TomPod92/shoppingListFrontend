@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './products.scss';
+
+import { SectionHeader } from '../../components/SectionHeader/SectionHeader';
 import { getALLProducts } from '../../redux/actions/products.actions';
 import { getALLSections } from '../../redux/actions/sections.actions';
+
+import './products.scss';
 
 export const Products = (props) => {
   const dispatch = useDispatch();
@@ -17,11 +20,15 @@ export const Products = (props) => {
       dispatch(getALLProducts());
       dispatch(getALLSections());
     }
-  }, [dispatch])
+  }, [dispatch, isAuthenticated])
 
   return (
     <div className="page products">
       Products
+      <SectionHeader name="Nabiał"/>
+      <SectionHeader name="Słodycze"/>
+      <SectionHeader name="Warzywa"/>
+      <SectionHeader name="Mięsa"/>
       {loadingProducts && loadingSections && "loading..."}
     </div>
   )
