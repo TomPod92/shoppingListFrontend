@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { SectionHeader } from '../../components/SectionHeader/SectionHeader';
 import { ProductListItem } from '../../components/ProductListItem/ProductListItem';
+import { ShoppingListItem } from '../../components/ShoppingListItem/ShoppingListItem';
 
 import './section.scss';
 
@@ -15,7 +16,8 @@ export const Section = (props) => {
     return (
         <div className="section">
             <SectionHeader name={props.header}/>
-            {props.products.map(current => <ProductListItem key={current._id} product={current}/>)}
+            {props.type === "products" && props.products.map(current => <ProductListItem key={current._id} product={current}/>)}
+            {props.type === "list" && props.products.map(current => <ShoppingListItem key={current._id} product={current}/>)}
         </div>
     )
 };

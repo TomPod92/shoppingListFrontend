@@ -1,0 +1,11 @@
+@import '../../index.scss';
+
+.shoppingListItem {
+    @include listItem;
+    background: var(--color-grey);
+    width: 80%;
+
+    &--bought {
+        background: var(--color-primary--opacity);
+    }
+}

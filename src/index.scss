@@ -1,5 +1,6 @@
 :root {
     --color-primary: #F4C70B;
+    --color-primary--opacity: rgba(244, 197, 11, 0.3);
     --color-grey: #F6F0EE;
     --color-background: #FFFAF9;
     --color-text: #2E2D2C;
@@ -36,6 +37,14 @@ body {
     margin-top: 4.4rem;
     background: var(--color-background);
     border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.page > .info {
+    display: flex;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+    font-size: 2rem;
+    font-weight: bold;
 }
 
 @mixin basic-input {

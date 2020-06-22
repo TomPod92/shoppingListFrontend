@@ -27,6 +27,15 @@ export const Products = (props) => {
     return <Spinner />
   }
 
+  // Jeżeli nie ma żadnych produktów oznaczonych jako "toBuy"
+  if(!products.length) {
+    return (
+      <div className="page">
+        <div className="info">Nie masz jeszcze dodanych produktów do sklepu</div>
+      </div>
+    )
+  }
+
   return (
     <div className="page products">
       {sections.map(section => (
@@ -34,6 +43,7 @@ export const Products = (props) => {
           key={section._id} 
           header={section.name} 
           products={products.filter(product => product.section === section.name)}
+          type="products"
         />)
       )}
     </div>
