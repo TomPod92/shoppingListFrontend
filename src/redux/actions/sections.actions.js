@@ -7,7 +7,7 @@ import { Toast } from '../../components/Toast/Toast';
 // -------------------------------------------------------------------
 export const getALLSections = () => async dispatch => {
     try {
-        dispatch({ type: GET_ALL_SECTIONS_REQUEST });
+        // dispatch({ type: GET_ALL_SECTIONS_REQUEST });
 
         const res = await axios.get('http://localhost:5000/sections');
         dispatch({

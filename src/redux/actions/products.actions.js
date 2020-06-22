@@ -7,7 +7,7 @@ import { Toast } from '../../components/Toast/Toast';
 // -------------------------------------------------------------------
 export const getALLProducts = () => async dispatch => {
     try {
-        dispatch({ type: GET_ALL_PRODUCTS_REQUEST });
+        // dispatch({ type: GET_ALL_PRODUCTS_REQUEST });
 
         const res = await axios.get('http://localhost:5000/products');
 

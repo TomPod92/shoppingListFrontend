@@ -15,6 +15,7 @@ export const sectionsReducer = (state = defaultState, action) => {
                 loading: false
             }
         case GET_ALL_SECTIONS_FAIL:
+            return defaultState
         default:
             return state;
     }

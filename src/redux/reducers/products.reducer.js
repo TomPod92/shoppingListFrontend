@@ -26,6 +26,7 @@ export const productsReducer = (state = defaultState, action) => {
                 })
             }
         case GET_ALL_PRODUCTS_FAIL:
+            return defaultState
         default:
             return state;
     }
