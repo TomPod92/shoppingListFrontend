@@ -64,8 +64,7 @@ export const autoLogin = () => async dispatch => {
         });
     } catch (error) {
         dispatch({ type: AUTOLOGIN_FAIL });
-        console.error(error.response)
-        toast.error(<Toast info={error.response.data} />);
+        console.error(error.response);
     }
 }
 // -------------------------------------------------------------------
