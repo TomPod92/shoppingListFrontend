@@ -8,7 +8,10 @@ const defaultState = {
 export const productsReducer = (state = defaultState, action) => {
     switch(action.type) {
         case GET_ALL_PRODUCTS_REQUEST:
-            return defaultState
+            return {
+                ...state,
+                loading: true
+            }
         case GET_ALL_PRODUCTS_SUCCESS:
             return {
                 products: action.products,

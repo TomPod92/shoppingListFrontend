@@ -7,7 +7,7 @@ import { Toast } from '../../components/Toast/Toast';
 // -------------------------------------------------------------------
 export const getALLProducts = () => async dispatch => {
     try {
-        // dispatch({ type: GET_ALL_PRODUCTS_REQUEST });
+        dispatch({ type: GET_ALL_PRODUCTS_REQUEST });
 
         const res = await axios.get('http://localhost:5000/products');
 
@@ -31,7 +31,7 @@ export const updateProduct = (id, updates) => async dispatch => {
         const body = JSON.stringify({...updates});
 
         const res = await axios.patch(`http://localhost:5000/products/${id}`, body, config);
-        console.log(res)
+
         if(res.status === 200) {
             // inny sposób --> pobierze wszystkie produkty po update'owaniu jedngo w bazie danych
             // dispatch(getALLProducts());

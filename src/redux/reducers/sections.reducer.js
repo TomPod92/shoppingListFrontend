@@ -8,7 +8,10 @@ const defaultState = {
 export const sectionsReducer = (state = defaultState, action) => {
     switch(action.type) {
         case GET_ALL_SECTIONS_REQUEST:
-            return defaultState
+            return {
+                ...state,
+                loading: true
+            }
         case GET_ALL_SECTIONS_SUCCESS:
             return {
                 sections: action.sections,
