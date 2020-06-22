@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux' // test
+import { useSelector } from 'react-redux';
 
 import { NavItem } from '../../components/NavItem/NavItem';
 import { config } from '../../config';

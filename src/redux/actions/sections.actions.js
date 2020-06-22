@@ -1,9 +1,9 @@
-import React from 'react'; // test
+import React from 'react';
 import { GET_ALL_SECTIONS_SUCCESS, GET_ALL_SECTIONS_FAIL, GET_ALL_SECTIONS_REQUEST } from '../actions/types';
 import axios from 'axios';
-import { toast } from 'react-toastify'; // test
+import { toast } from 'react-toastify';
 
-import { Toast } from '../../components/Toast/Toast'; // test
+import { Toast } from '../../components/Toast/Toast';
 // -------------------------------------------------------------------
 export const getALLSections = () => async dispatch => {
     try {

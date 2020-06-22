@@ -1,10 +1,10 @@
-import React from 'react'; // test
+import React from 'react';
 import { CREATE_USER_SUCCESS, CREATE_USER_FAIL, LOGIN_SUCCESS, LOGIN_FAIL, AUTOLOGIN_SUCCESS, AUTOLOGIN_FAIL,  LOGOUT, GET_USER, UPDATE_USER, DELETE_USER } from '../actions/types';
 import axios from 'axios';
-import { toast } from 'react-toastify'; // test
+import { toast } from 'react-toastify';
 
 import { setAuthToken } from '../../helpers/setAuthToken';
-import { Toast } from '../../components/Toast/Toast'; // test
+import { Toast } from '../../components/Toast/Toast';
 // -------------------------------------------------------------------
 export const createUser = ({ email, password }) => async dispatch => {
     const config = {
@@ -65,7 +65,7 @@ export const autoLogin = () => async dispatch => {
     } catch (error) {
         dispatch({ type: AUTOLOGIN_FAIL });
         console.error(error.response)
-        // toast.error(<Toast info={error.response.data} />);
+        toast.error(<Toast info={error.response.data} />);
     }
 }
 // -------------------------------------------------------------------

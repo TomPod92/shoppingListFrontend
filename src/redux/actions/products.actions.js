@@ -1,9 +1,9 @@
-import React from 'react'; // test
+import React from 'react';
 import { GET_ALL_PRODUCTS_SUCCESS, GET_ALL_PRODUCTS_FAIL, GET_ALL_PRODUCTS_REQUEST } from '../actions/types';
 import axios from 'axios';
-import { toast } from 'react-toastify'; // test
+import { toast } from 'react-toastify';
 
-import { Toast } from '../../components/Toast/Toast'; // test
+import { Toast } from '../../components/Toast/Toast';
 // -------------------------------------------------------------------
 export const getALLProducts = () => async dispatch => {
     try {
@@ -18,7 +18,7 @@ export const getALLProducts = () => async dispatch => {
     } catch (error) {
         dispatch({ type: GET_ALL_PRODUCTS_FAIL });
         console.error(error.response)
-        // toast.error(<Toast info={error.response.data.error}/>);
+        toast.error(<Toast info={error.response.data.error}/>);
     }
 }
 

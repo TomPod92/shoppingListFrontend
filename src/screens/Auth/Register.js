@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux' // test
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
 import { toast } from 'react-toastify';
@@ -16,7 +16,7 @@ export const Register = (props) => {
     password2: ''
   });
 
-  const dispatch = useDispatch(); // test
+  const dispatch = useDispatch();
   const isAuthenticated = useSelector(state => state.user.isAuth);
 // -------------------------------------------------------------------
   const handleInputChange = event => setFormData({...formData, [event.target.name]: event.target.value});

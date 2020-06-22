@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux' // test
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { FaPowerOff } from 'react-icons/fa';
 
@@ -9,7 +9,7 @@ import './header.scss';
 
 export const Header = (props) => {
   let location = useLocation().pathname.split('/')[1];
-  const dispatch = useDispatch(); // test
+  const dispatch = useDispatch();
   const isAuthenticated = useSelector(state => state.user.isAuth);
 
   const title = () => {

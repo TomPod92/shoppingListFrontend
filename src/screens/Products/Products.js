@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-
-import { SectionHeader } from '../../components/SectionHeader/SectionHeader';
-import { ProductListItem } from '../../components/ProductListItem/ProductListItem';
 import { Section } from '../../components/Section/Section';
 import { Spinner } from '../../components/Spinner/Spinner';
 import { getALLProducts } from '../../redux/actions/products.actions';
@@ -32,8 +29,13 @@ export const Products = (props) => {
 
   return (
     <div className="page products">
-      {/* <Spinner /> */}
-      {sections.map(section => <Section key={section._id} header={section.name} products={products.filter(product => product.section === section.name)}/>)}
+      {sections.map(section => (
+        <Section 
+          key={section._id} 
+          header={section.name} 
+          products={products.filter(product => product.section === section.name)}
+        />)
+      )}
     </div>
   )
 };
