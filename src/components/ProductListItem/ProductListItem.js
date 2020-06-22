@@ -1,11 +1,16 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { FaCheckCircle, FaTimesCircle, FaWrench, FaTrash } from "react-icons/fa";
+
+import { updateProduct } from '../../redux/actions/products.actions';
 
 import './productListItem.scss';
 
 export const ProductListItem = ({ product }) => {
+    const dispatch = useDispatch();
+
     const handleToggleToBuy = () => {
-        console.log('handleToggleToBuy')
+        dispatch(updateProduct(product._id, { toBuy: !product.toBuy }))
     }
 
     const iconClassName = () => {
