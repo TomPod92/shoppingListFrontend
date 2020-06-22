@@ -36,6 +36,9 @@ export const login = ({ email, password }) => async dispatch => {
 
     try {
         const res = await axios.post('http://localhost:5000/users/login', body, config);
+        
+        setAuthToken(res.data.user.token);
+
         dispatch({
             type: LOGIN_SUCCESS,
             user: res.data
