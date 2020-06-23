@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import { Toast } from '../../components/Toast/Toast';
 import { SectionHeader } from '../../components/SectionHeader/SectionHeader';
 import { checkIfValidEmail } from '../../helpers/checkIfValidEmail';
+import { updateUser } from '../../redux/actions/user.actions';
 
 import './forms.scss';
 
 export const EmailForm = (props) => {
     const [ email, setEmail ] = useState('');
     const [ email2, setEmail2 ] = useState('');
+    const dispatch = useDispatch();
 // -------------------------------------------------------------------
     const validateForm = () => {
         let valid = true;
@@ -42,8 +45,8 @@ export const EmailForm = (props) => {
         if(!validateForm()) {
             return
         } else {
-            console.log('zmien')
-            // props.closeForm();
+            dispatch(updateUser({ email: email }))
+            props.closeForm();
         }
     }
 // -------------------------------------------------------------------

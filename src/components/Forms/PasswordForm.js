@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import { Toast } from '../../components/Toast/Toast';
@@ -10,6 +11,7 @@ export const PasswordForm = (props) => {
     const [ password, setPassword ] = useState('');
     const [ newPassword, setNewPassword ] = useState('');
     const [ newPassword2, setNewPassword2 ] = useState('');
+    const dispatch = useDispatch();
 // -------------------------------------------------------------------
     const validateForm = () => {
         let valid = true;

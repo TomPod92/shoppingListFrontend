@@ -27,6 +27,11 @@ export const userReducer = (state = defaultState, action) => {
                 isAuth: true,
                 loading: false
             }
+        case UPDATE_USER:
+            return {
+                ...state,
+                email: action.user.email
+            }
         case CREATE_USER_FAIL:
         case LOGIN_FAIL:
         case AUTOLOGIN_FAIL:

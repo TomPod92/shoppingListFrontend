@@ -71,3 +71,29 @@ export const autoLogin = () => async dispatch => {
 export const logout = () => dispatch => {
     dispatch({ type: LOGOUT });
 };
+// -------------------------------------------------------------------
+export const updateUser = (updates) => async dispatch => {
+    try {
+        const config = {
+            headers: { 'Content-Type': 'application/json' }
+        };
+    
+        const body = JSON.stringify({...updates});
+
+        const res = await axios.patch('http://localhost:5000/users/me', body, config);
+
+        dispatch({
+            type: UPDATE_USER,
+            user: res.data
+        })
+
+        if(updates.email) {
+            toast.success(<Toast info="Adres email został zaktualizowany" />);
+        } else {
+            toast.success(<Toast info="Hasło zostało zaktualizowane" />);
+        }
+    } catch (error) {
+        console.error(error.response);
+        toast.error(<Toast info="Cos poszło nie tak" />);
+    }
+}
