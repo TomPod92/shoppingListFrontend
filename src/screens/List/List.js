@@ -23,6 +23,10 @@ export const List = (props) => {
     }
   }, [dispatch, isAuthenticated])
 
+  if(loadingProducts || loadingSections) {
+    return <Spinner />
+  }
+
   // Jeżeli nie ma żadnych produktów oznaczonych jako "toBuy"
   if(!products.length) {
     return (
@@ -38,7 +42,6 @@ export const List = (props) => {
         <Section 
           key={section._id} 
           header={section.name} 
-          products={products.filter(product => product.section === section.name)}
           type="list"
         />)
       )}

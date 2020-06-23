@@ -42,7 +42,7 @@ export const Products = (props) => {
         <Section 
           key={section._id} 
           header={section.name} 
-          products={products.filter(product => product.section === section.name)}
+          // products={products.filter(product => product.section === section.name)}
           type="products"
         />)
       )}
