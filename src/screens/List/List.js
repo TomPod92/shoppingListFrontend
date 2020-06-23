@@ -1,11 +1,12 @@
 import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { confirmAlert } from 'react-confirm-alert';
 
 import { Section } from '../../components/Section/Section';
 import { Spinner } from '../../components/Spinner/Spinner';
-import { getALLProducts } from '../../redux/actions/products.actions';
+import { getALLProducts, updateProduct } from '../../redux/actions/products.actions';
 import { getALLSections } from '../../redux/actions/sections.actions';
-import { GET_ALL_SECTIONS_FAIL, GET_ALL_PRODUCTS_FAIL } from '../../redux/actions/types';
+
 import './list.scss';
 
 export const List = (props) => {
@@ -22,6 +23,34 @@ export const List = (props) => {
       dispatch(getALLSections());
     }
   }, [dispatch, isAuthenticated])
+
+  // Usuń produkty oznaczone jako kupione (bought === true)
+  const handleFilterCart = () => {
+    products.forEach(current => {
+      if(current.bought) {
+        dispatch(updateProduct(current._id, { bought: false, toBuy: false }));
+      }
+    })
+  }
+
+  // Usuń wszystkie produkty z koszyka (toBuy === true)
+  const handleClearCart = () => {
+    console.log('clear');
+  }
+
+  const confirm = (action) => () => confirmAlert({  
+    title: action === "filter" ? "Na pewno chcesz usunąc kupione produkty?" : "Czy na pewno chcesz usunąć wszystkie produkty z koszyka?",   
+    buttons: [
+        {
+            label: "Tak",
+            onClick: () => action === "filter" ? handleFilterCart() : handleClearCart()
+        },
+        {
+            label: "Nie",
+            onClick: () => {}
+        }
+    ]
+  });
 
   if(loadingProducts || loadingSections) {
     return <Spinner />
@@ -41,10 +70,14 @@ export const List = (props) => {
       {sections.map(section => (
         <Section 
           key={section._id} 
-          header={section.name} 
+          header={section.name}
+          products={products.filter(product => product.section === section.name)} // wyślij tylko te produkty które znajdują się w danej sekcji
           type="list"
         />)
       )}
+
+      <button className="filterCart" onClick={confirm("filter")}>Usuń kupione</button>
+      <button className="clearCart" onClick={confirm("clear")}>Wyczyść koszyk</button>
     </div>
   )
 };

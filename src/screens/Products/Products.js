@@ -41,8 +41,8 @@ export const Products = (props) => {
       {sections.map(section => (
         <Section 
           key={section._id} 
-          header={section.name} 
-          // products={products.filter(product => product.section === section.name)}
+          header={section.name}
+          products={products.filter(product => product.section === section.name)} // wyślij tylko te produkty które znajdują się w danej sekcji
           type="products"
         />)
       )}

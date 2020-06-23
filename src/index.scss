@@ -100,3 +100,61 @@ body {
     font-size: 1.5rem;
     font-weight: bold;
 }
+// ------------------------------------------------
+// -----------------CONFIRM ALERT------------------
+// ------------------------------------------------
+.react-confirm-alert-svg {
+    display: none;
+  }
+  
+  .react-confirm-alert {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 2px;
+    background-color: rgba(245, 245, 245, 0.9);
+    padding: 3rem;
+  }
+  
+  .react-confirm-alert-overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(45, 45, 45, 0.7);
+    z-index: 100;
+  }
+  
+  .react-confirm-alert-body {
+    & h1 {
+        display: block;
+        text-align: center;
+        font-size: 2rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 3rem;
+    }
+  }
+  
+  .react-confirm-alert-button-group {
+    display: flex;
+    justify-content: center;
+  
+    & button {
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 2px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: all 0.4s ease-in;
+      color: var(--color-item-background-primary);
+      background-color: var(--color-primary);
+    }
+  
+    & button:first-child {
+      margin-right: 2rem;
+    }
+  }
