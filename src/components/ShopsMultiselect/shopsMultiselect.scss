@@ -1,0 +1,26 @@
+.shopsMultiSelect {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 1rem 2rem;
+    margin-bottom: 4rem;
+}
+
+.shopOption + .shopOption { margin-left: 1rem; }
+
+.shopOption__input { display: none; }
+
+.shopOption__label {
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--color-primary);
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.shopOption__input:checked + .shopOption__label {
+    background: var(--color-primary);
+} 
+

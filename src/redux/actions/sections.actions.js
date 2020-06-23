@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 
 import { Toast } from '../../components/Toast/Toast';
 // -------------------------------------------------------------------
-export const getALLSections = () => async dispatch => {
+export const getAllSections = () => async dispatch => {
     try {
         dispatch({ type: GET_ALL_SECTIONS_REQUEST });
 

@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Section } from '../../components/Section/Section';
 import { Spinner } from '../../components/Spinner/Spinner';
-import { getALLProducts } from '../../redux/actions/products.actions';
-import { getALLSections } from '../../redux/actions/sections.actions';
+import { ShopsMultiselect } from '../../components/ShopsMultiselect/ShopsMultiselect';
+import { getAllProducts } from '../../redux/actions/products.actions';
+import { getAllSections } from '../../redux/actions/sections.actions';
 
 import './products.scss';
 
@@ -18,8 +19,8 @@ export const Products = (props) => {
 
   useEffect(() => {
     if(isAuthenticated) {
-      dispatch(getALLProducts());
-      dispatch(getALLSections());
+      dispatch(getAllProducts());
+      dispatch(getAllSections());
     }
   }, [dispatch, isAuthenticated])
 
@@ -38,6 +39,7 @@ export const Products = (props) => {
 
   return (
     <div className="page products">
+      <ShopsMultiselect />
       {sections.map(section => (
         <Section 
           key={section._id} 

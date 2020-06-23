@@ -4,8 +4,8 @@ import { confirmAlert } from 'react-confirm-alert';
 
 import { Section } from '../../components/Section/Section';
 import { Spinner } from '../../components/Spinner/Spinner';
-import { getALLProducts, updateProduct } from '../../redux/actions/products.actions';
-import { getALLSections } from '../../redux/actions/sections.actions';
+import { getAllProducts, updateProduct } from '../../redux/actions/products.actions';
+import { getAllSections } from '../../redux/actions/sections.actions';
 
 import './list.scss';
 
@@ -19,8 +19,8 @@ export const List = (props) => {
 
   useEffect(() => {
     if(isAuthenticated) {
-      dispatch(getALLProducts());
-      dispatch(getALLSections());
+      dispatch(getAllProducts());
+      dispatch(getAllSections());
     }
   }, [dispatch, isAuthenticated])
 
