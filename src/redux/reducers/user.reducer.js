@@ -20,7 +20,6 @@ export const userReducer = (state = defaultState, action) => {
                 loading: false
             }
         case AUTOLOGIN_SUCCESS:
-            console.log(action)
             return {
                 ...state,
                 email: action.user.email,

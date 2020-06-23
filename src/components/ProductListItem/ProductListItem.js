@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { FaCheckCircle, FaTimesCircle, FaWrench, FaTrash } from "react-icons/fa";
+import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
 import { updateProduct } from '../../redux/actions/products.actions';
 

@@ -1,0 +1,37 @@
+@import '../../index.scss';
+
+.changeForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 3rem 0 3rem 0;
+    background: var(--color-grey);
+
+    &__input {
+        @include basic-input;
+        margin-bottom: 2.5rem;
+    }
+
+    &__input:focus {
+        background: var(--color-primary);
+    }
+
+    &__buttonContainer {
+        @include centered;
+    }
+
+    &__button {
+        @include button;
+        width: auto;
+    }
+
+    .changeButton {
+        @include button--primary;
+        margin-right: 2rem;
+    }
+
+    .cancelButton {
+        @include button--secondary;
+    }
+}
