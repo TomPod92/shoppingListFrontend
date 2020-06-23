@@ -24,18 +24,14 @@ export const List = (props) => {
     }
   }, [dispatch, isAuthenticated])
 
-  // Usuń produkty oznaczone jako kupione (bought === true)
+  // Usuń produkty oznaczone jako kupione (oznaczone jako --> bought === true)
   const handleFilterCart = () => {
-    products.forEach(current => {
-      if(current.bought) {
-        dispatch(updateProduct(current._id, { bought: false, toBuy: false }));
-      }
-    })
+    products.forEach(current => current.bought && dispatch(updateProduct(current._id, { bought: false, toBuy: false })))
   }
 
-  // Usuń wszystkie produkty z koszyka (toBuy === true)
+  // Usuń wszystkie produkty z koszyka (oznaczone jako --> toBuy === true)
   const handleClearCart = () => {
-    console.log('clear');
+    products.forEach(current => dispatch(updateProduct(current._id, { bought: false, toBuy: false })))
   }
 
   const confirm = (action) => () => confirmAlert({  
