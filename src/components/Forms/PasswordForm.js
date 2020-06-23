@@ -4,11 +4,12 @@ import { toast } from 'react-toastify';
 
 import { Toast } from '../../components/Toast/Toast';
 import { SectionHeader } from '../../components/SectionHeader/SectionHeader';
+import { updateUser } from '../../redux/actions/user.actions';
 
 import './forms.scss';
 
 export const PasswordForm = (props) => {
-    const [ password, setPassword ] = useState('');
+    const [ oldPassword, setOldPassword ] = useState('');
     const [ newPassword, setNewPassword ] = useState('');
     const [ newPassword2, setNewPassword2 ] = useState('');
     const dispatch = useDispatch();
@@ -16,7 +17,7 @@ export const PasswordForm = (props) => {
     const validateForm = () => {
         let valid = true;
     
-        if(!password.trim() || password.trim().length <= 6) {
+        if(!oldPassword.trim() || oldPassword.trim().length <= 6) {
           toast.error(<Toast info="Podaj obecne hasło (minimum 7 znaków)"/>);
           valid = false;
         }
@@ -46,8 +47,8 @@ export const PasswordForm = (props) => {
         if(!validateForm()) {
             return
         } else {
-            console.log('zmien')
-            // props.closeForm();
+            dispatch(updateUser({ oldPassword: oldPassword, password: newPassword }))
+            props.closeForm();
         }
 
     }
@@ -58,8 +59,8 @@ export const PasswordForm = (props) => {
             <input 
                 className="changeForm__input" 
                 type="text" 
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
+                value={oldPassword}
+                onChange={(event) => setOldPassword(event.target.value)}
             />
 
             <SectionHeader name="Nowe hasło" small />
