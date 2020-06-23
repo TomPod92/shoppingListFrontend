@@ -20,6 +20,8 @@ export const createUser = ({ email, password }) => async dispatch => {
             type: CREATE_USER_SUCCESS,
             user: res.data
         });
+
+        toast.success(<Toast info="Zalogowano" />);
     } catch (error) {
         dispatch({ type: CREATE_USER_FAIL });
         console.error(error.response)
@@ -43,6 +45,8 @@ export const login = ({ email, password }) => async dispatch => {
             type: LOGIN_SUCCESS,
             user: res.data
         });
+
+        toast.success(<Toast info="Zalogowano" />);
     } catch (error) {
         dispatch({ type: LOGIN_FAIL });
         console.error(error.response)
@@ -62,6 +66,8 @@ export const autoLogin = () => async dispatch => {
             type: AUTOLOGIN_SUCCESS,
             user: res.data
         });
+
+        toast.success(<Toast info="Zalogowano" />);
     } catch (error) {
         dispatch({ type: AUTOLOGIN_FAIL });
         console.error(error.response);
@@ -70,6 +76,8 @@ export const autoLogin = () => async dispatch => {
 // -------------------------------------------------------------------
 export const logout = () => dispatch => {
     dispatch({ type: LOGOUT });
+
+    toast.error(<Toast info="Wylogowano" />);
 };
 // -------------------------------------------------------------------
 export const updateUser = (updates) => async dispatch => {
