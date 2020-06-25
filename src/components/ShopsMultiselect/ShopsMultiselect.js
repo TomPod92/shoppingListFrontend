@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getAllShops } from '../../redux/actions/shops.actions';
@@ -21,10 +21,6 @@ export const ShopsMultiselect = (props) => {
         return null
     }
 
-    const handleSelect = (event) => {
-        console.log(event.target.value)
-    }
-
     return (
         <div className="shopsMultiSelect">
             {shops.map(current => (
@@ -34,7 +30,7 @@ export const ShopsMultiselect = (props) => {
                         className="shopOption__input"
                         type="checkbox" 
                         value={current.name}
-                        onChange={handleSelect}
+                        onChange={() => props.manageShopFilters(current.name)}
                     />
                     <label className="shopOption__label" htmlFor={current.name} key={current._id}> {current.name}</label>
                 </div>

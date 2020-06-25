@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Section } from '../../components/Section/Section';
@@ -17,13 +17,28 @@ export const Products = (props) => {
   const loadingSections = useSelector(state => state.sections.loading);
   const isAuthenticated = useSelector(state => state.user.isAuth);
 
+  const [ shopFilters, setShopFilters ] = useState([]);
+//---------------------------------------------------------------------------------------
   useEffect(() => {
     if(isAuthenticated) {
       dispatch(getAllProducts());
       dispatch(getAllSections());
     }
-  }, [dispatch, isAuthenticated])
-
+  }, [dispatch, isAuthenticated]);
+//---------------------------------------------------------------------------------------
+  // Jeżeli danego sklepu nie ma w tablicy "shopFilters" dodaj go
+  // Jeżeli dany sklep był w tablicy "shopFilters" usuń go
+  const manageShopFilters = (shopFilter) => {
+    const indexOfShopFilter = shopFilters.findIndex(current => current === shopFilter)
+    if(indexOfShopFilter >= 0) {
+      const newShopFilters = shopFilters;
+      newShopFilters.splice(indexOfShopFilter, 1)
+      setShopFilters([...newShopFilters]);
+    } else {
+      setShopFilters(prevState => [...prevState, shopFilter])
+    }
+  }
+//---------------------------------------------------------------------------------------
   if(loadingProducts || loadingSections) {
     return <Spinner />
   }
@@ -39,7 +54,7 @@ export const Products = (props) => {
 
   return (
     <div className="page products">
-      <ShopsMultiselect />
+      <ShopsMultiselect manageShopFilters={manageShopFilters}/>
       {sections.map(section => (
         <Section 
           key={section._id} 
