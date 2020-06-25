@@ -7,6 +7,7 @@ import { ShoppingListItem } from '../../components/ShoppingListItem/ShoppingList
 import './section.scss';
 
 export const Section = (props) => {
+
     // Jeżeli nie ma produktów w danym dziale nie wyświetlaj nic
     if(props.products.length === 0) {
         return null

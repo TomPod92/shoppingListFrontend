@@ -6,6 +6,7 @@ import { Spinner } from '../../components/Spinner/Spinner';
 import { ShopsMultiselect } from '../../components/ShopsMultiselect/ShopsMultiselect';
 import { getAllProducts } from '../../redux/actions/products.actions';
 import { getAllSections } from '../../redux/actions/sections.actions';
+import { preperProductsList } from '../../helpers/preperProductsList';
 
 import './products.scss';
 
@@ -59,10 +60,11 @@ export const Products = (props) => {
         <Section 
           key={section._id} 
           header={section.name}
-          products={products.filter(product => product.section === section.name)} // wyślij tylko te produkty które znajdują się w danej sekcji
+          products={preperProductsList(products, section.name, shopFilters)}
           type="products"
         />)
       )}
+
     </div>
   )
 };

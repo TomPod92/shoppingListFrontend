@@ -6,6 +6,7 @@ import { Section } from '../../components/Section/Section';
 import { Spinner } from '../../components/Spinner/Spinner';
 import { getAllProducts, updateProduct } from '../../redux/actions/products.actions';
 import { getAllSections } from '../../redux/actions/sections.actions';
+import { preperProductsList } from '../../helpers/preperProductsList';
 
 import './list.scss';
 
@@ -67,7 +68,7 @@ export const List = (props) => {
         <Section 
           key={section._id} 
           header={section.name}
-          products={products.filter(product => product.section === section.name)} // wyślij tylko te produkty które znajdują się w danej sekcji
+          products={preperProductsList(products, section.name, [])}
           type="list"
         />)
       )}
