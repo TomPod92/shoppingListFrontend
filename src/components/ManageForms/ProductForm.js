@@ -3,7 +3,7 @@ import './manageForms.scss';
 
 export const ProductForm = (props) => {
   return (
-    <div className="productForm">
+    <div className="manageForm productForm">
         productForm
     </div>
   )

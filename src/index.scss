@@ -74,6 +74,10 @@ body {
     font-size: 1.4rem;
     font-weight: bold;
 
+    &:focus {
+        outline: none;
+    }
+
     & a {
         color: var(--color-text);
         text-decoration: none;
