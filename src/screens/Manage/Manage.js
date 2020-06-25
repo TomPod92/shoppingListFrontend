@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
 import { ManageNavigation } from '../../components/ManageNavigation/ManageNavigation';
-import { ProductForm } from '../../components/ProductForm/ProductForm';
-import { ShopForm } from '../../components/ShopForm/ShopForm';
-import { SectionForm } from '../../components/SectionForm/SectionForm';
+import { ProductForm } from '../../components/ManageForms/ProductForm';
+import { ShopForm } from '../../components/ManageForms/ShopForm';
+import { SectionForm } from '../../components/ManageForms/SectionForm';
 
 import './manage.scss';
 

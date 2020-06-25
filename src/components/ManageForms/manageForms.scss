@@ -1,0 +1,14 @@
+@import '../../index.scss';
+
+.sectionForm {
+
+}
+
+.manageForm__input {
+    @include basic-input;
+}
+
+.manageForm__button {
+    @include button;
+    @include button--primary;
+}

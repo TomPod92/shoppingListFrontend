@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './productForm.scss';
+import './manageForms.scss';
 
 export const ProductForm = (props) => {
   return (
