@@ -1,4 +1,4 @@
-import { GET_ALL_SECTIONS_SUCCESS, GET_ALL_SECTIONS_FAIL, GET_ALL_SECTIONS_REQUEST } from '../actions/types';
+import { GET_ALL_SECTIONS_SUCCESS, GET_ALL_SECTIONS_FAIL, GET_ALL_SECTIONS_REQUEST, CREATE_SECTION } from '../actions/types';
 
 const defaultState = {
     sections: [],
@@ -19,6 +19,11 @@ export const sectionsReducer = (state = defaultState, action) => {
             }
         case GET_ALL_SECTIONS_FAIL:
             return defaultState
+        case CREATE_SECTION:
+            return {
+                ...state,
+                sections: [...state.sections, action.section]
+            }
         default:
             return state;
     }
