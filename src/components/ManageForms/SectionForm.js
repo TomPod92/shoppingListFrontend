@@ -47,9 +47,7 @@ export const SectionForm = (props) => {
         </button>
       </div>
 
-      { allSectionPanelVisible && <ManageList items={sections} type="sections"/>}
-      
-
+      { allSectionPanelVisible && <ManageList items={sections} type="sections"/> }
     </div>
   )
 };

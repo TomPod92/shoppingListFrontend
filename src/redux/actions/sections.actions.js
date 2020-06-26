@@ -53,6 +53,7 @@ export const removeSection = (section_id) => async dispatch => {
         toast.error(<Toast info="Dział usunięto"/>);
     } catch (error) {
         console.error(error);
+        toast.error(<Toast info="Coś poszło nie tak :("/>);
     }
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { GET_ALL_SHOPS_SUCCESS, GET_ALL_SHOPS_FAIL, GET_ALL_SHOPS_REQUEST } from '../actions/types';
+import { GET_ALL_SHOPS_SUCCESS, GET_ALL_SHOPS_FAIL, GET_ALL_SHOPS_REQUEST, CREATE_SHOP, REMOVE_SHOP } from '../actions/types';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
@@ -17,6 +17,42 @@ export const getAllShops = () => async dispatch => {
     } catch (error) {
         dispatch({ type: GET_ALL_SHOPS_FAIL });
         console.error(error.response)
-        // toast.error(<Toast info={error.response.data.error}/>);
+        toast.error(<Toast info={error.response.data.error}/>);
+    }
+}
+// -------------------------------------------------------------------
+export const createShop = (shopName) => async dispatch => {
+    try {
+        const body = JSON.stringify({name: shopName});
+
+        const config = {
+            headers: { 'Content-Type': 'application/json' }
+        };
+    
+        const res = await axios.post('http://localhost:5000/shops', body, config);
+
+        dispatch({
+            type: CREATE_SHOP,
+            shop: res.data
+        });
+    } catch (error) {
+        console.error(error.response);
+        toast.error(<Toast info={error.response.data}/>);
+    }
+}
+// -------------------------------------------------------------------
+export const removeShop = (shop_id) => async dispatch => {
+    try {
+        const res = await axios.delete(`http://localhost:5000/shops/${shop_id}`);
+
+        dispatch({
+            type: REMOVE_SHOP,
+            shop_id: res.data._id
+        });
+        
+        toast.error(<Toast info="Sklep usunięto"/>);
+    } catch (error) {
+        console.error(error);
+        toast.error(<Toast info="Coś poszło nie tak :("/>);
     }
 }
