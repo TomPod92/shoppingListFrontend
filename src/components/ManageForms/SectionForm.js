@@ -21,7 +21,7 @@ export const SectionForm = (props) => {
   const handleCreateSection = () => {
     if(!sectionName.trim()) {
       toast.error(<Toast info="Podaj nazwę nowego działu"/>);
-      return
+      return;
     } else {
       dispatch(createSection(sectionName));
       toast.success(<Toast info="Dział dodano"/>);

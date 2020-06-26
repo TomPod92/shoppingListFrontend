@@ -1,4 +1,4 @@
-import { GET_ALL_SECTIONS_SUCCESS, GET_ALL_SECTIONS_FAIL, GET_ALL_SECTIONS_REQUEST, CREATE_SECTION } from '../actions/types';
+import { GET_ALL_SECTIONS_SUCCESS, GET_ALL_SECTIONS_FAIL, GET_ALL_SECTIONS_REQUEST, CREATE_SECTION, REMOVE_SECTION } from '../actions/types';
 
 const defaultState = {
     sections: [],
@@ -23,6 +23,11 @@ export const sectionsReducer = (state = defaultState, action) => {
             return {
                 ...state,
                 sections: [...state.sections, action.section]
+            }
+        case REMOVE_SECTION:
+            return {
+                ...state,
+                sections: state.sections.filter(current => current._id !== action.section_id)
             }
         default:
             return state;
