@@ -1,0 +1,11 @@
+@import '../../index.scss';
+
+.manageItem {
+    @include listItem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    background: var(--color-background);
+    border: 2px solid var(--color-primary);
+}

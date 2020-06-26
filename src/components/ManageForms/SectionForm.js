@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
-import { getAllSections } from '../../redux/actions/sections.actions';
+import { Toast } from '../../components/Toast/Toast';
+import { ManageList } from '../ManageList/ManageList';
+import { getAllSections, createSection } from '../../redux/actions/sections.actions';
 
 import './manageForms.scss';
 
@@ -15,6 +18,17 @@ export const SectionForm = (props) => {
     dispatch(getAllSections());
   }, [dispatch]);
 
+  const handleCreateSection = () => {
+    if(!sectionName.trim()) {
+      toast.error(<Toast info="Podaj nazwę nowego działu"/>);
+      return
+    } else {
+      dispatch(createSection(sectionName));
+      toast.success(<Toast info="Dział dodano"/>);
+      setSectionName('');
+    }
+  }
+
   return (
     <div className="manageForm sectionForm">
       <input 
@@ -25,13 +39,15 @@ export const SectionForm = (props) => {
         onChange={(event) => setSectionName(event.target.value)}
       />
 
-      <button className="manageForm__button">Dodaj</button>
+      <button className="manageForm__button" onClick={handleCreateSection}>Dodaj</button>
 
       <div className="manageForm__panelButton" >
         <button onClick={() => setAllSectionPanelVisible(prevState => !prevState)}>
           { allSectionPanelVisible ? "Zwiń" : "Pokaż" } listę działów
         </button>
       </div>
+
+      { allSectionPanelVisible && <ManageList items={sections} type="sections"/>}
       
 
     </div>
