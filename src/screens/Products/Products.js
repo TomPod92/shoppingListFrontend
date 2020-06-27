@@ -27,8 +27,8 @@ export const Products = (props) => {
     }
   }, [dispatch, isAuthenticated]);
 //---------------------------------------------------------------------------------------
-  // Jeżeli danego sklepu nie ma w tablicy "shopFilters" dodaj go
   // Jeżeli dany sklep był w tablicy "shopFilters" usuń go
+  // Jeżeli danego sklepu nie ma w tablicy "shopFilters" dodaj go
   const manageShopFilters = (shopFilter) => {
     const indexOfShopFilter = shopFilters.findIndex(current => current === shopFilter)
     if(indexOfShopFilter >= 0) {

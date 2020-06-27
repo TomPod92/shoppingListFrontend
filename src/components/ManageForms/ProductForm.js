@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 
 import { Toast } from '../../components/Toast/Toast';
 import { ManageList } from '../ManageList/ManageList';
+import { ShopsMultiselect } from '../../components/ShopsMultiselect/ShopsMultiselect';
 import { getAllSections } from '../../redux/actions/sections.actions';
 import { getAllShops } from '../../redux/actions/shops.actions';
 import { getAllProducts, updateProduct } from '../../redux/actions/products.actions';
@@ -23,13 +24,13 @@ export const ProductForm = (props) => {
   });
 
   const [ allProductsPanelVisible, setAllProductsPanelVisible ] = useState(false);
-
+//---------------------------------------------------------------------------------------
   useEffect(() => {
     dispatch(getAllSections());
-    dispatch(getAllShops());
+    // dispatch(getAllShops());
     dispatch(getAllProducts());
   }, [dispatch]);
-
+//---------------------------------------------------------------------------------------
   const handleCreateProduct = () => {
     if(!newProduct.name.trim()) {
       toast.error(<Toast info="Podaj nazwę nowego produktu"/>);
@@ -44,7 +45,26 @@ export const ProductForm = (props) => {
       });
     }
   }
-
+//---------------------------------------------------------------------------------------
+  // Jeżeli dany sklep był w tablicy "shopFilters" usuń go
+  // Jeżeli danego sklepu nie ma w tablicy "shopFilters" dodaj go
+  const manageShopFilters = (shopFilter) => {
+    const indexOfShopFilter = newProduct.shops.findIndex(current => current === shopFilter)
+    if(indexOfShopFilter >= 0) {
+      const newShopFilters = [...newProduct.shops];
+      newShopFilters.splice(indexOfShopFilter, 1)
+      setNewProduct({
+        ...newProduct,
+        shops: [...newShopFilters]
+      })
+    } else {
+      setNewProduct({
+        ...newProduct,
+        shops: [...newProduct.shops, shopFilter]
+      })
+    }
+  }
+//---------------------------------------------------------------------------------------
   return (
     <div className="manageForm productForm">
         <input 
@@ -55,7 +75,15 @@ export const ProductForm = (props) => {
           onChange={(event) => setNewProduct({...newProduct, name: event.target.value})}
         />
 
+        <ShopsMultiselect manageShopFilters={manageShopFilters}/>
+
         <button className="manageForm__button" onClick={handleCreateProduct}>Dodaj</button>
+
+        <div className="manageForm__panelButton" >
+        <button onClick={() => setAllProductsPanelVisible(prevState => !prevState)}>
+          { allProductsPanelVisible ? "Zwiń" : "Pokaż" } listę produktów
+        </button>
+      </div>
     </div>
   )
 };
