@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { Toast } from '../../components/Toast/Toast';
 import { ManageList } from '../ManageList/ManageList';
 import { ShopsMultiselect } from '../../components/ShopsMultiselect/ShopsMultiselect';
+import { SectionsSelect } from '../../components/SectionsSelect/SectionsSelect';
 import { getAllSections } from '../../redux/actions/sections.actions';
 import { getAllShops } from '../../redux/actions/shops.actions';
 import { getAllProducts, updateProduct } from '../../redux/actions/products.actions';
@@ -65,6 +66,13 @@ export const ProductForm = (props) => {
     }
   }
 //---------------------------------------------------------------------------------------
+const manageSections = (section) => {
+  setNewProduct({
+    ...newProduct,
+    section: section
+  })
+}
+//---------------------------------------------------------------------------------------
   return (
     <div className="manageForm productForm">
         <input 
@@ -76,6 +84,7 @@ export const ProductForm = (props) => {
         />
 
         <ShopsMultiselect manageShopFilters={manageShopFilters}/>
+        <SectionsSelect manageSections={manageSections}/>
 
         <button className="manageForm__button" onClick={handleCreateProduct}>Dodaj</button>
 
