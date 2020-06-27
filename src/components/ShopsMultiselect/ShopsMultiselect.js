@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { Spinner } from '..//Spinner/Spinner';
 import { getAllShops } from '../../redux/actions/shops.actions';
 
 import './shopsMultiselect.scss';
@@ -18,7 +19,7 @@ export const ShopsMultiselect = (props) => {
     }, [dispatch, isAuthenticated]);
 
     if(loadingShops) {
-        return null
+        return <Spinner />
     }
 
     return (

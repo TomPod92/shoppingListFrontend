@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import { Toast } from '../../components/Toast/Toast';
+import { SectionHeader } from '../SectionHeader/SectionHeader';
 import { ManageList } from '../ManageList/ManageList';
 import { ShopsMultiselect } from '../../components/ShopsMultiselect/ShopsMultiselect';
 import { SectionsSelect } from '../../components/SectionsSelect/SectionsSelect';
@@ -27,7 +28,7 @@ export const ProductForm = (props) => {
   const [ allProductsPanelVisible, setAllProductsPanelVisible ] = useState(false);
 //---------------------------------------------------------------------------------------
   useEffect(() => {
-    dispatch(getAllSections());
+    // dispatch(getAllSections());
     // dispatch(getAllShops());
     dispatch(getAllProducts());
   }, [dispatch]);
@@ -83,16 +84,22 @@ const manageSections = (section) => {
           onChange={(event) => setNewProduct({...newProduct, name: event.target.value})}
         />
 
+        <h2 className="manageForm__header">Lista sklepów:</h2>
         <ShopsMultiselect manageShopFilters={manageShopFilters}/>
+
+        <h2 className="manageForm__header">Lista działów:</h2>
         <SectionsSelect manageSections={manageSections}/>
 
         <button className="manageForm__button" onClick={handleCreateProduct}>Dodaj</button>
 
         <div className="manageForm__panelButton" >
-        <button onClick={() => setAllProductsPanelVisible(prevState => !prevState)}>
-          { allProductsPanelVisible ? "Zwiń" : "Pokaż" } listę produktów
-        </button>
-      </div>
+          <button onClick={() => setAllProductsPanelVisible(prevState => !prevState)}>
+            { allProductsPanelVisible ? "Zwiń" : "Pokaż" } listę produktów
+          </button>
+        </div>
+
+        { allProductsPanelVisible && <ManageList items={products} type="products" /> }
+
     </div>
   )
 };

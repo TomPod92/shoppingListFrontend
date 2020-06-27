@@ -8,6 +8,12 @@
     padding: 3rem 0;
 }
 
+.manageForm__header {
+    display: block;
+    width: 100%;
+    padding: 1rem 2rem 1rem 5rem;
+}
+
 .manageForm__input {
     @include basic-input;
     margin-bottom: 2rem;

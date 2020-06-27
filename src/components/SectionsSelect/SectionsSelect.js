@@ -1,15 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import { Spinner } from '..//Spinner/Spinner';
 import { getAllSections } from '../../redux/actions/sections.actions';
 
 import './sectionsSelect.scss';
 
 export const SectionsSelect = (props) => {
+    const dispatch = useDispatch();
     const sections = useSelector(state => state.sections.sections);
 
+    useEffect(() => {
+        dispatch(getAllSections());
+      }, [dispatch]);
+
     if(sections.length === 0) {
-        return (<div>Loading...</div>)
+        return <Spinner />
     }
 
     return (

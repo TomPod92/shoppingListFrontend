@@ -5,7 +5,12 @@
     flex-wrap: wrap;
     width: 100%;
     padding: 1rem 2rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
+}
+
+.sectionOption { 
+    height: 30px;
+    margin-bottom: 1rem; 
 }
 
 .sectionOption + .sectionOption { margin-left: 1rem; }
@@ -22,5 +27,4 @@
 
 .sectionOption__input:checked + .sectionOption__label {
     background: var(--color-primary);
-} 
-
+}
