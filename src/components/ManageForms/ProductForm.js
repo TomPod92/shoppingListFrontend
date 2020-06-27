@@ -6,7 +6,7 @@ import { Toast } from '../../components/Toast/Toast';
 import { ManageList } from '../ManageList/ManageList';
 import { getAllSections } from '../../redux/actions/sections.actions';
 import { getAllShops } from '../../redux/actions/shops.actions';
-import { getAllProducts } from '../../redux/actions/products.actions';
+import { getAllProducts, updateProduct } from '../../redux/actions/products.actions';
 
 import './manageForms.scss';
 
@@ -16,7 +16,12 @@ export const ProductForm = (props) => {
   const shops = useSelector(state => state.shops.shops);
   const products = useSelector(state => state.products.products);
 
-  const [ productName, setProductName ] = useState('');
+  const [ newProduct, setNewProduct ] = useState({
+    name: '',
+    section: '',
+    shops: []
+  });
+
   const [ allProductsPanelVisible, setAllProductsPanelVisible ] = useState(false);
 
   useEffect(() => {
@@ -26,19 +31,31 @@ export const ProductForm = (props) => {
   }, [dispatch]);
 
   const handleCreateProduct = () => {
-    if(!productName.trim()) {
+    if(!newProduct.name.trim()) {
       toast.error(<Toast info="Podaj nazwę nowego produktu"/>);
       return;
     } else {
       // dispatch(createSection(sectionName));
       toast.success(<Toast info="Produkt dodano"/>);
-      setProductName('');
+      setNewProduct({
+        name: '',
+        section: '',
+        shops: []
+      });
     }
   }
 
   return (
     <div className="manageForm productForm">
-        productForm
+        <input 
+          className="manageForm__input"
+          type="text"
+          placeholder="Nazwa produktu"
+          value={newProduct.name}
+          onChange={(event) => setNewProduct({...newProduct, name: event.target.value})}
+        />
+
+        <button className="manageForm__button" onClick={handleCreateProduct}>Dodaj</button>
     </div>
   )
 };
