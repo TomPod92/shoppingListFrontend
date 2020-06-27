@@ -1,4 +1,4 @@
-import { GET_ALL_PRODUCTS_SUCCESS, GET_ALL_PRODUCTS_FAIL, GET_ALL_PRODUCTS_REQUEST, UPDATE_PRODUCT } from '../actions/types';
+import { GET_ALL_PRODUCTS_SUCCESS, GET_ALL_PRODUCTS_FAIL, GET_ALL_PRODUCTS_REQUEST, CREATE_PRODUCT, REMOVE_PRODUCT, UPDATE_PRODUCT } from '../actions/types';
 
 const defaultState = {
     products: [],
@@ -16,6 +16,16 @@ export const productsReducer = (state = defaultState, action) => {
             return {
                 products: action.products,
                 loading: false
+            }
+        case CREATE_PRODUCT:
+            return {
+                ...state,
+                products: [...state.products, action.newProduct]
+            }
+        case REMOVE_PRODUCT:
+            return {
+                ...state,
+                products: state.products.filter(current => current._id !== action.product_id)
             }
         case UPDATE_PRODUCT:
             return {

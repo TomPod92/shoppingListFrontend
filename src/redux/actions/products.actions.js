@@ -1,5 +1,5 @@
 import React from 'react';
-import { GET_ALL_PRODUCTS_SUCCESS, GET_ALL_PRODUCTS_FAIL, GET_ALL_PRODUCTS_REQUEST, UPDATE_PRODUCT } from '../actions/types';
+import { GET_ALL_PRODUCTS_SUCCESS, GET_ALL_PRODUCTS_FAIL, GET_ALL_PRODUCTS_REQUEST, CREATE_PRODUCT, REMOVE_PRODUCT, UPDATE_PRODUCT } from '../actions/types';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
@@ -21,6 +21,41 @@ export const getAllProducts = () => async dispatch => {
         // toast.error(<Toast info={error.response.data.error}/>);
     }
 };
+// -------------------------------------------------------------------
+export const createProduct = (newProduct) => async dispatch => {
+    try {
+        const body = JSON.stringify({...newProduct});
+
+        const config = {
+            headers: { 'Content-Type': 'application/json' }
+        };
+
+        const res = await axios.post('http://localhost:5000/products', body, config);
+
+        dispatch({
+            type: CREATE_PRODUCT,
+            newProduct: res.data
+        });
+    
+    } catch (error) {
+        console.error(error.response)
+        toast.error(<Toast info={error.response.data.error}/>);
+    }
+}
+// -------------------------------------------------------------------
+export const removeProduct = product_id => async dispatch => {
+    try {
+        const res = await axios.delete(`http://localhost:5000/products/${product_id}`);
+
+        dispatch({
+            type: REMOVE_PRODUCT,
+            product_id: res.data._id
+        })
+    } catch (error) {
+        console.error(error.response);
+        toast.error(<Toast info="Coś poszło nie tak :("/>);
+    }
+}
 // -------------------------------------------------------------------
 export const updateProduct = (id, updates) => async dispatch => {
     try {
