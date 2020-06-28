@@ -17,7 +17,7 @@ export const SectionsSelect = (props) => {
     if(sections.length === 0) {
         return <Spinner />
     }
-
+    
     return (
       <div className="sectionsSelect">
           {sections.map(current => (
@@ -28,6 +28,7 @@ export const SectionsSelect = (props) => {
                         type="radio" 
                         name="section"
                         value={current.name}
+                        checked={props.selectedSection.includes(current.name)} // test
                         onChange={() => props.manageSections(current.name)}
                     />
                     <label className="sectionOption__label" htmlFor={current.name} key={current._id}> {current.name}</label>

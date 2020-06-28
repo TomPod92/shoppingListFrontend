@@ -8,4 +8,10 @@
     width: 80%;
     background: var(--color-background);
     border: 2px solid var(--color-primary);
+
+    &__actions {
+        display: flex;
+    }
+
+    & .edit { margin-right: 3rem; }
 }

@@ -9,7 +9,7 @@ import { ShopsMultiselect } from '../../components/ShopsMultiselect/ShopsMultise
 import { SectionsSelect } from '../../components/SectionsSelect/SectionsSelect';
 import { getAllSections } from '../../redux/actions/sections.actions';
 import { getAllShops } from '../../redux/actions/shops.actions';
-import { getAllProducts, updateProduct } from '../../redux/actions/products.actions';
+import { getAllProducts, createProduct, updateProduct } from '../../redux/actions/products.actions';
 
 import './manageForms.scss';
 
@@ -28,8 +28,6 @@ export const ProductForm = (props) => {
   const [ allProductsPanelVisible, setAllProductsPanelVisible ] = useState(false);
 //---------------------------------------------------------------------------------------
   useEffect(() => {
-    // dispatch(getAllSections());
-    // dispatch(getAllShops());
     dispatch(getAllProducts());
   }, [dispatch]);
 //---------------------------------------------------------------------------------------
@@ -38,7 +36,7 @@ export const ProductForm = (props) => {
       toast.error(<Toast info="Podaj nazwę nowego produktu"/>);
       return;
     } else {
-      // dispatch(createSection(sectionName));
+      dispatch(createProduct(newProduct));
       toast.success(<Toast info="Produkt dodano"/>);
       setNewProduct({
         name: '',
@@ -85,10 +83,14 @@ const manageSections = (section) => {
         />
 
         <h2 className="manageForm__header">Lista sklepów:</h2>
-        <ShopsMultiselect manageShopFilters={manageShopFilters}/>
+        {/* <ShopsMultiselect manageShopFilters={manageShopFilters}/> */}
+        {/* // test */}
+        <ShopsMultiselect manageShopFilters={manageShopFilters} selectedShops={newProduct.shops} />
 
         <h2 className="manageForm__header">Lista działów:</h2>
-        <SectionsSelect manageSections={manageSections}/>
+        {/* <SectionsSelect manageSections={manageSections} /> */}
+        {/* // test */}
+        <SectionsSelect manageSections={manageSections} selectedSection={newProduct.section} /> 
 
         <button className="manageForm__button" onClick={handleCreateProduct}>Dodaj</button>
 
@@ -99,7 +101,6 @@ const manageSections = (section) => {
         </div>
 
         { allProductsPanelVisible && <ManageList items={products} type="products" /> }
-
     </div>
   )
 };

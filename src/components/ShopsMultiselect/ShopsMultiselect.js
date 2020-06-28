@@ -31,6 +31,7 @@ export const ShopsMultiselect = (props) => {
                         className="shopOption__input"
                         type="checkbox" 
                         value={current.name}
+                        checked={props.selectedShops.includes(current.name)}
                         onChange={() => props.manageShopFilters(current.name)}
                     />
                     <label className="shopOption__label" htmlFor={current.name} key={current._id}> {current.name}</label>

@@ -55,7 +55,7 @@ export const Products = (props) => {
 
   return (
     <div className="page products">
-      <ShopsMultiselect manageShopFilters={manageShopFilters}/>
+      <ShopsMultiselect manageShopFilters={manageShopFilters} selectedShops={shopFilters} />
       {sections.map(section => (
         <Section 
           key={section._id} 

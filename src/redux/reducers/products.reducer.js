@@ -15,6 +15,7 @@ export const productsReducer = (state = defaultState, action) => {
             }
         case GET_ALL_PRODUCTS_SUCCESS:
             return {
+                ...state,
                 products: action.products,
                 loading: false
             }

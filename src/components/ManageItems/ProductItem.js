@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { FaTrash } from 'react-icons/fa';
+import { FaTrash, FaWrench } from 'react-icons/fa';
 import { confirmAlert } from 'react-confirm-alert';
 
-import { removeProduct } from '../../redux/actions/products.actions';
+import { removeProduct, getSingleProduct } from '../../redux/actions/products.actions';
 
 import './manageItems.scss';
 
@@ -24,11 +24,23 @@ export const ProductItem = (props) => {
         ]
       });
 
+    const setProductToEdit = (product_id) => () => {
+        dispatch(getSingleProduct(product_id))
+    }
+
     return (
         <div className="manageItem productItem">
             <span>{props.product.name}</span>
-            <div onClick={confirm}>
-                <FaTrash />
+
+            <div className="manageItem__actions">
+                <div className="edit" onClick={setProductToEdit(props.product._id)}>
+                {/* <div className="edit"> */}
+                    <FaWrench />
+                </div>
+        
+                <div className="remove" onClick={confirm}>
+                    <FaTrash />
+                </div>
             </div>
         </div>
     )
