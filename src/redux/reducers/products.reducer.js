@@ -1,7 +1,8 @@
-import { GET_ALL_PRODUCTS_SUCCESS, GET_ALL_PRODUCTS_FAIL, GET_ALL_PRODUCTS_REQUEST, CREATE_PRODUCT, REMOVE_PRODUCT, UPDATE_PRODUCT } from '../actions/types';
+import { GET_ALL_PRODUCTS_SUCCESS, GET_ALL_PRODUCTS_FAIL, GET_ALL_PRODUCTS_REQUEST, GET_SINGLE_PRODUCT, CREATE_PRODUCT, REMOVE_PRODUCT, UPDATE_PRODUCT } from '../actions/types';
 
 const defaultState = {
     products: [],
+    productToUpdate: {},
     loading: true,
 };
 
@@ -17,6 +18,11 @@ export const productsReducer = (state = defaultState, action) => {
                 products: action.products,
                 loading: false
             }
+        case GET_SINGLE_PRODUCT:
+            return {
+                ...state,
+                productToUpdate: action.product
+            }
         case CREATE_PRODUCT:
             return {
                 ...state,
@@ -30,6 +36,7 @@ export const productsReducer = (state = defaultState, action) => {
         case UPDATE_PRODUCT:
             return {
                 ...state,
+                productToUpdate: {},
                 products: state.products.map(current => {
                     if(current._id !== action.product._id) {
                         return current

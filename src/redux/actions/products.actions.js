@@ -1,5 +1,5 @@
 import React from 'react';
-import { GET_ALL_PRODUCTS_SUCCESS, GET_ALL_PRODUCTS_FAIL, GET_ALL_PRODUCTS_REQUEST, CREATE_PRODUCT, REMOVE_PRODUCT, UPDATE_PRODUCT } from '../actions/types';
+import { GET_ALL_PRODUCTS_SUCCESS, GET_ALL_PRODUCTS_FAIL, GET_ALL_PRODUCTS_REQUEST, GET_SINGLE_PRODUCT, CREATE_PRODUCT, REMOVE_PRODUCT, UPDATE_PRODUCT } from '../actions/types';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
@@ -18,9 +18,23 @@ export const getAllProducts = () => async dispatch => {
     } catch (error) {
         dispatch({ type: GET_ALL_PRODUCTS_FAIL });
         console.error(error.response)
-        // toast.error(<Toast info={error.response.data.error}/>);
+        toast.error(<Toast info="Coś poszło nie tak :(" />);
     }
 };
+// -------------------------------------------------------------------
+export const getSingleProduct = products_id=> async dispatch => {
+    try {
+        const res = await axios.get(`http://localhost:5000/products/${products_id}`);
+
+        dispatch({
+            type: GET_SINGLE_PRODUCT,
+            product: res.data
+        })
+    } catch (error) {
+        console.error(error.response)
+        toast.error(<Toast info="Coś poszło nie tak :(" />);
+    }
+}
 // -------------------------------------------------------------------
 export const createProduct = (newProduct) => async dispatch => {
     try {
