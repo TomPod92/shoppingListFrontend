@@ -19,9 +19,15 @@
     margin-bottom: 2rem;
 }
 
-.manageForm__button {
+.manageForm__button--add {
     @include button;
     @include button--primary;
+    margin-bottom: 1rem;
+}
+
+.manageForm__button--clear {
+    @include button;
+    @include button--secondary;
 }
 
 .manageForm__panelButton {

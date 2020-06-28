@@ -18,33 +18,84 @@ export const ProductForm = (props) => {
   const sections = useSelector(state => state.sections.sections);
   const shops = useSelector(state => state.shops.shops);
   const products = useSelector(state => state.products.products);
+  const productToUpdate = useSelector(state => state.products.productToUpdate);
 
   const [ newProduct, setNewProduct ] = useState({
-    name: '',
-    section: '',
-    shops: []
+    name:'',
+    section:'',
+    shops:[]
   });
-
   const [ allProductsPanelVisible, setAllProductsPanelVisible ] = useState(false);
 //---------------------------------------------------------------------------------------
   useEffect(() => {
     dispatch(getAllProducts());
   }, [dispatch]);
+
+//---------------------------------------------------------------------------------------
+// Po naciśnięciu "edit" ustaw pola "newProduct" zgodnie z tymi, które są na klikniętym produkcie
+  useEffect(() => {
+    if(productToUpdate.name) {
+      // setNewProduct({
+      //   name: productToUpdate.name,
+      //   section: productToUpdate.section,
+      //   shops: productToUpdate.shops
+      // });
+      setNewProduct({...productToUpdate})
+    }
+  }, [productToUpdate])
+//---------------------------------------------------------------------------------------
+const validateForm = () => {
+  let valid = true;
+
+  if(!newProduct.name.trim()) {
+    toast.error(<Toast info="Podaj nazwę nowego produktu"/>);
+    valid = false;
+  } 
+  if(!newProduct.section.trim()) {
+    toast.error(<Toast info="Podaj nazwę działu"/>);
+    valid = false;
+  } 
+  if(newProduct.shops.length === 0) {
+    toast.error(<Toast info="Wbierz przynajmniej jeden sklep"/>);
+    valid = false;
+  }
+
+  return valid;
+
+}
 //---------------------------------------------------------------------------------------
   const handleCreateProduct = () => {
-    if(!newProduct.name.trim()) {
-      toast.error(<Toast info="Podaj nazwę nowego produktu"/>);
+    if(!validateForm()){
       return;
+    }
+
+    // Jeżeli "newProduct" posiada "_id" trzeba produkt aktualizowac. Jeżeli nie należy dodać nowy produkt
+    if(newProduct._id) {
+      const product_id = newProduct._id;
+      const updates = {
+        name: newProduct.name,
+        section: newProduct.section,
+        shops: newProduct.shops
+      }
+      dispatch(updateProduct(product_id, updates))
+      toast.success(<Toast info="Produkt zaktualizowano"/>);
     } else {
       dispatch(createProduct(newProduct));
       toast.success(<Toast info="Produkt dodano"/>);
-      setNewProduct({
-        name: '',
-        section: '',
-        shops: []
-      });
     }
+
+    setNewProduct({
+      name:'',
+      section:'',
+      shops:[]
+    });
   }
+//---------------------------------------------------------------------------------------
+const handleClearFields = () => setNewProduct({
+  name:'',
+  section:'',
+  shops:[]
+})
 //---------------------------------------------------------------------------------------
   // Jeżeli dany sklep był w tablicy "shopFilters" usuń go
   // Jeżeli danego sklepu nie ma w tablicy "shopFilters" dodaj go
@@ -83,16 +134,13 @@ const manageSections = (section) => {
         />
 
         <h2 className="manageForm__header">Lista sklepów:</h2>
-        {/* <ShopsMultiselect manageShopFilters={manageShopFilters}/> */}
-        {/* // test */}
         <ShopsMultiselect manageShopFilters={manageShopFilters} selectedShops={newProduct.shops} />
 
         <h2 className="manageForm__header">Lista działów:</h2>
-        {/* <SectionsSelect manageSections={manageSections} /> */}
-        {/* // test */}
         <SectionsSelect manageSections={manageSections} selectedSection={newProduct.section} /> 
 
-        <button className="manageForm__button" onClick={handleCreateProduct}>Dodaj</button>
+        <button className="manageForm__button--add" onClick={handleCreateProduct}>{newProduct._id ? "Aktualizuj": "Dodaj"}</button>
+        <button className="manageForm__button--clear" onClick={handleClearFields}>Wyczyść</button>
 
         <div className="manageForm__panelButton" >
           <button onClick={() => setAllProductsPanelVisible(prevState => !prevState)}>
