@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { FaWrench, FaTrash } from "react-icons/fa";
+import { useSelector } from 'react-redux';
+import { FaWrench } from "react-icons/fa";
 
 import { SectionHeader } from '../../components/SectionHeader/SectionHeader';
 import { EmailForm } from '../../components/Forms/EmailForm';
@@ -8,8 +8,7 @@ import { PasswordForm } from '../../components/Forms/PasswordForm';
 
 import './account.scss';
 
-export const Account = (props) => {
-  const dispatch = useDispatch();
+export const Account = () => {
   const user = useSelector(state => state.user);
 
   const [ formOpen, setFormOpen ] = useState({

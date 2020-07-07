@@ -3,20 +3,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import { Toast } from '../../components/Toast/Toast';
-import { SectionHeader } from '../SectionHeader/SectionHeader';
 import { ManageList } from '../ManageList/ManageList';
 import { ShopsMultiselect } from '../../components/ShopsMultiselect/ShopsMultiselect';
 import { SectionsSelect } from '../../components/SectionsSelect/SectionsSelect';
-import { getAllSections } from '../../redux/actions/sections.actions';
-import { getAllShops } from '../../redux/actions/shops.actions';
 import { getAllProducts, createProduct, updateProduct } from '../../redux/actions/products.actions';
 
 import './manageForms.scss';
 
-export const ProductForm = (props) => {
+export const ProductForm = () => {
   const dispatch = useDispatch();
-  const sections = useSelector(state => state.sections.sections);
-  const shops = useSelector(state => state.shops.shops);
   const products = useSelector(state => state.products.products);
   const productToUpdate = useSelector(state => state.products.productToUpdate);
 
