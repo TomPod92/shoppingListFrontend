@@ -39,7 +39,7 @@ export const SectionForm = (props) => {
         onChange={(event) => setSectionName(event.target.value)}
       />
 
-      <button className="manageForm__button" onClick={handleCreateSection}>Dodaj</button>
+      <button className="manageForm__button--add" onClick={handleCreateSection}>Dodaj</button>
 
       <div className="manageForm__panelButton" >
         <button onClick={() => setAllSectionPanelVisible(prevState => !prevState)}>

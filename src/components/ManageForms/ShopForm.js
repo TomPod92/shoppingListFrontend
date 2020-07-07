@@ -39,7 +39,7 @@ export const ShopForm = (props) => {
         onChange={(event) => setShopName(event.target.value)}
       />
 
-      <button className="manageForm__button" onClick={handleCreateShop}>Dodaj</button>
+      <button className="manageForm__button--add" onClick={handleCreateShop}>Dodaj</button>
 
       <div className="manageForm__panelButton" >
         <button onClick={() => setAllShopsPanelVisible(prevState => !prevState)}>

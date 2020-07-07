@@ -7,12 +7,16 @@ import { ManageList } from '../ManageList/ManageList';
 import { ShopsMultiselect } from '../../components/ShopsMultiselect/ShopsMultiselect';
 import { SectionsSelect } from '../../components/SectionsSelect/SectionsSelect';
 import { getAllProducts, createProduct, updateProduct } from '../../redux/actions/products.actions';
+import { getAllSections } from '../../redux/actions/sections.actions';
+import { getAllShops } from '../../redux/actions/shops.actions';
 
 import './manageForms.scss';
 
 export const ProductForm = () => {
   const dispatch = useDispatch();
   const products = useSelector(state => state.products.products);
+  const sections = useSelector(state => state.sections.sections);
+  const shops = useSelector(state => state.shops.shops);
   const productToUpdate = useSelector(state => state.products.productToUpdate);
 
   const [ newProduct, setNewProduct ] = useState({
@@ -24,6 +28,8 @@ export const ProductForm = () => {
 //---------------------------------------------------------------------------------------
   useEffect(() => {
     dispatch(getAllProducts());
+    dispatch(getAllSections());
+    dispatch(getAllShops());
   }, [dispatch]);
 
 //---------------------------------------------------------------------------------------
@@ -128,12 +134,25 @@ const manageSections = (section) => {
           onChange={(event) => setNewProduct({...newProduct, name: event.target.value})}
         />
 
-        <h2 className="manageForm__header">Lista sklepów:</h2>
-        <ShopsMultiselect manageShopFilters={manageShopFilters} selectedShops={newProduct.shops} />
+        { shops.length > 0 ? (
+            <>
+              <h2 className="manageForm__header">Lista sklepów:</h2>
+              <ShopsMultiselect manageShopFilters={manageShopFilters} selectedShops={newProduct.shops} />
+            </>
+          )
+          :
+            <p className="manageForm__info">Nie dodałeś jeszcze żadnych sklepów</p>
+        }
 
-        <h2 className="manageForm__header">Lista działów:</h2>
-        <SectionsSelect manageSections={manageSections} selectedSection={newProduct.section} /> 
-
+        { sections.length > 0 ? (
+            <>
+              <h2 className="manageForm__header">Lista działów:</h2>
+              <SectionsSelect manageSections={manageSections} selectedSection={newProduct.section} /> 
+            </>
+          ) :
+            <p className="manageForm__info noSectionsInfo">Nie dodałeś jeszcze żadnych działów</p>
+        }
+        
         <button className="manageForm__button--add" onClick={handleCreateProduct}>{newProduct._id ? "Aktualizuj": "Dodaj"}</button>
         <button className="manageForm__button--clear" onClick={handleClearFields}>Wyczyść</button>
 
