@@ -9,7 +9,7 @@ export const getAllSections = () => async dispatch => {
     try {
         dispatch({ type: GET_ALL_SECTIONS_REQUEST });
 
-        const res = await axios.get('http://localhost:5000/sections');
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/sections`);
         dispatch({
             type: GET_ALL_SECTIONS_SUCCESS,
             sections: res.data
@@ -29,7 +29,7 @@ export const createSection = (sectionName) => async dispatch => {
             headers: { 'Content-Type': 'application/json' }
         };
     
-        const res = await axios.post('http://localhost:5000/sections', body, config);
+        const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/sections`, body, config);
 
         dispatch({
             type: CREATE_SECTION,
@@ -43,7 +43,7 @@ export const createSection = (sectionName) => async dispatch => {
 // -------------------------------------------------------------------
 export const removeSection = (section_id) => async dispatch => {
     try {
-        const res = await axios.delete(`http://localhost:5000/sections/${section_id}`);
+        const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/sections/${section_id}`);
 
         dispatch({
             type: REMOVE_SECTION,

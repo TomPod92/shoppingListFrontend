@@ -9,7 +9,7 @@ export const getAllProducts = () => async dispatch => {
     try {
         dispatch({ type: GET_ALL_PRODUCTS_REQUEST });
 
-        const res = await axios.get('http://localhost:5000/products');
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/products`);
 
         dispatch({
             type: GET_ALL_PRODUCTS_SUCCESS,
@@ -24,7 +24,7 @@ export const getAllProducts = () => async dispatch => {
 // -------------------------------------------------------------------
 export const getSingleProduct = products_id=> async dispatch => {
     try {
-        const res = await axios.get(`http://localhost:5000/products/${products_id}`);
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/${products_id}`);
 
         dispatch({
             type: GET_SINGLE_PRODUCT,
@@ -44,7 +44,7 @@ export const createProduct = (newProduct) => async dispatch => {
             headers: { 'Content-Type': 'application/json' }
         };
 
-        const res = await axios.post('http://localhost:5000/products', body, config);
+        const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/products`, body, config);
 
         dispatch({
             type: CREATE_PRODUCT,
@@ -59,7 +59,7 @@ export const createProduct = (newProduct) => async dispatch => {
 // -------------------------------------------------------------------
 export const removeProduct = product_id => async dispatch => {
     try {
-        const res = await axios.delete(`http://localhost:5000/products/${product_id}`);
+        const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/products/${product_id}`);
 
         dispatch({
             type: REMOVE_PRODUCT,
@@ -79,7 +79,7 @@ export const updateProduct = (id, updates) => async dispatch => {
     
         const body = JSON.stringify({...updates});
 
-        const res = await axios.patch(`http://localhost:5000/products/${id}`, body, config);
+        const res = await axios.patch(`${process.env.REACT_APP_BACKEND_URL}/products/${id}`, body, config);
 
         if(res.status === 200) {
             // inny sposób --> pobierze wszystkie produkty po update'owaniu jedngo w bazie danych

@@ -14,7 +14,7 @@ export const createUser = ({ email, password }) => async dispatch => {
     const body = JSON.stringify({email, password});
 
     try {
-        const res = await axios.post('http://localhost:5000/users', body, config);
+        const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/users`, body, config);
 
         dispatch({
             type: CREATE_USER_SUCCESS,
@@ -37,7 +37,7 @@ export const login = ({ email, password }) => async dispatch => {
     const body = JSON.stringify({email, password});
 
     try {
-        const res = await axios.post('http://localhost:5000/users/login', body, config);
+        const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/users/login`, body, config);
         
         setAuthToken(res.data.user.token);
 
@@ -61,7 +61,7 @@ export const autoLogin = () => async dispatch => {
     }
 
     try {
-        const res = await axios.get('http://localhost:5000/users/me');
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/users/me`);
         dispatch({ 
             type: AUTOLOGIN_SUCCESS,
             user: res.data
@@ -88,7 +88,7 @@ export const updateUser = (updates) => async dispatch => {
     
         const body = JSON.stringify({...updates});
 
-        const res = await axios.patch('http://localhost:5000/users/me', body, config);
+        const res = await axios.patch(`${process.env.REACT_APP_BACKEND_URL}/users/me`, body, config);
 
         dispatch({
             type: UPDATE_USER,

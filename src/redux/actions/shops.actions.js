@@ -9,7 +9,7 @@ export const getAllShops = () => async dispatch => {
     try {
         dispatch({ type: GET_ALL_SHOPS_REQUEST });
 
-        const res = await axios.get('http://localhost:5000/shops');
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/shops`);
         dispatch({
             type: GET_ALL_SHOPS_SUCCESS,
             shops: res.data
@@ -29,7 +29,7 @@ export const createShop = (shopName) => async dispatch => {
             headers: { 'Content-Type': 'application/json' }
         };
     
-        const res = await axios.post('http://localhost:5000/shops', body, config);
+        const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/shops`, body, config);
 
         dispatch({
             type: CREATE_SHOP,
@@ -43,7 +43,7 @@ export const createShop = (shopName) => async dispatch => {
 // -------------------------------------------------------------------
 export const removeShop = (shop_id) => async dispatch => {
     try {
-        const res = await axios.delete(`http://localhost:5000/shops/${shop_id}`);
+        const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/shops/${shop_id}`);
 
         dispatch({
             type: REMOVE_SHOP,
