@@ -85,7 +85,7 @@ export const updateProduct = (id, updates) => async dispatch => {
         const body = JSON.stringify({...updates});
 
         const res = await axios.patch(`${process.env.REACT_APP_BACKEND_URL}/products/${id}`, body, config);
-
+        
         if(res.status === 200) {
             // inny sposób --> pobierze wszystkie produkty po update'owaniu jedngo w bazie danych
             // dispatch(getALLProducts());
@@ -94,6 +94,11 @@ export const updateProduct = (id, updates) => async dispatch => {
                 product: res.data
             });
 
+            // Jeżeli aktualizowaliśmy produkt, wyświetl tosta
+            // Jeżeli tylko zmienialismy wartość "toBuy" lub "bought" nie wyświetlaj
+            if(updates.hasOwnProperty('toBuy') | updates.hasOwnProperty('bought')) {
+                return
+            }
             toast.success(<Toast info="Produkt zaktualizowano"/>);
         }
     } catch (error) {
