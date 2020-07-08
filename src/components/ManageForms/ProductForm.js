@@ -78,11 +78,9 @@ const validateForm = () => {
         section: newProduct.section,
         shops: newProduct.shops
       }
-      dispatch(updateProduct(product_id, updates))
-      toast.success(<Toast info="Produkt zaktualizowano"/>);
+      dispatch(updateProduct(product_id, updates));
     } else {
       dispatch(createProduct(newProduct));
-      toast.success(<Toast info="Produkt dodano"/>);
     }
 
     setNewProduct({
