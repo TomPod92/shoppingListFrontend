@@ -4,6 +4,7 @@
 /.firebase
 firebase.json
 .firebaserc
+firebase-debug.log
 # dependencies
 /node_modules
 /.pnp
