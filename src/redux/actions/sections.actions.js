@@ -31,10 +31,15 @@ export const createSection = (sectionName) => async dispatch => {
     
         const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/sections`, body, config);
 
-        dispatch({
-            type: CREATE_SECTION,
-            section: res.data
-        });
+        if(res.status !== 400) {
+            dispatch({
+                type: CREATE_SECTION,
+                section: res.data
+            });
+            
+            toast.success(<Toast info="Dział dodano"/>);
+        }
+        
     } catch (error) {
         console.error(error.response);
         toast.error(<Toast info={error.response.data}/>);

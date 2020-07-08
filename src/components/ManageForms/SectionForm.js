@@ -24,7 +24,6 @@ export const SectionForm = (props) => {
       return;
     } else {
       dispatch(createSection(sectionName));
-      toast.success(<Toast info="Dział dodano"/>);
       setSectionName('');
     }
   }

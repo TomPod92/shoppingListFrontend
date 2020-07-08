@@ -24,7 +24,7 @@ export const ShopForm = (props) => {
       return;
     } else {
       dispatch(createShop(shopName));
-      toast.success(<Toast info="Sklep dodano"/>);
+      
       setShopName('');
     }
   }

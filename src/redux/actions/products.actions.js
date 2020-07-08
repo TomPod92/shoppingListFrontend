@@ -46,10 +46,15 @@ export const createProduct = (newProduct) => async dispatch => {
 
         const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/products`, body, config);
 
-        dispatch({
-            type: CREATE_PRODUCT,
-            newProduct: res.data
-        });
+        if(res.status !== 400) {
+            dispatch({
+                type: CREATE_PRODUCT,
+                newProduct: res.data
+            });
+
+            toast.success(<Toast info="Produkt dodano"/>);
+        }
+        
     
     } catch (error) {
         console.error(error.response)
@@ -88,6 +93,8 @@ export const updateProduct = (id, updates) => async dispatch => {
                 type: UPDATE_PRODUCT,
                 product: res.data
             });
+
+            toast.success(<Toast info="Produkt zaktualizowano"/>);
         }
     } catch (error) {
         toast.error(<Toast info={"Nie udało się dodać produktu do listy zakupów"}/>);

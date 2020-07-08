@@ -30,11 +30,15 @@ export const createShop = (shopName) => async dispatch => {
         };
     
         const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/shops`, body, config);
+        
+        if(res.status !== 400) {
+            dispatch({
+                type: CREATE_SHOP,
+                shop: res.data
+            });
 
-        dispatch({
-            type: CREATE_SHOP,
-            shop: res.data
-        });
+            toast.success(<Toast info="Sklep dodano"/>);
+        }
     } catch (error) {
         console.error(error.response);
         toast.error(<Toast info={error.response.data}/>);
