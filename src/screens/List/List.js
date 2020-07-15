@@ -1,9 +1,10 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { confirmAlert } from 'react-confirm-alert';
 
 import { Section } from '../../components/Section/Section';
 import { Spinner } from '../../components/Spinner/Spinner';
+import { ShopsMultiselect } from '../../components/ShopsMultiselect/ShopsMultiselect';
 import { getAllProducts, updateProduct } from '../../redux/actions/products.actions';
 import { getAllSections } from '../../redux/actions/sections.actions';
 import { preperProductsList } from '../../helpers/preperProductsList';
@@ -18,12 +19,27 @@ export const List = (props) => {
   const loadingSections = useSelector(state => state.sections.loading);
   const isAuthenticated = useSelector(state => state.user.isAuth);
 
+  const [ shopFilters, setShopFilters ] = useState([]);
+
   useEffect(() => {
     if(isAuthenticated) {
       dispatch(getAllProducts());
       dispatch(getAllSections());
     }
   }, [dispatch, isAuthenticated])
+
+  // Jeżeli dany sklep był w tablicy "shopFilters" usuń go
+  // Jeżeli danego sklepu nie ma w tablicy "shopFilters" dodaj go
+  const manageShopFilters = (shopFilter) => {
+    const indexOfShopFilter = shopFilters.findIndex(current => current === shopFilter)
+    if(indexOfShopFilter >= 0) {
+      const newShopFilters = shopFilters;
+      newShopFilters.splice(indexOfShopFilter, 1)
+      setShopFilters([...newShopFilters]);
+    } else {
+      setShopFilters(prevState => [...prevState, shopFilter])
+    }
+  }
 
   // Usuń produkty oznaczone jako kupione (oznaczone jako --> bought === true)
   const handleFilterCart = () => {
@@ -64,11 +80,12 @@ export const List = (props) => {
 
   return (
     <div className="page list">
+      <ShopsMultiselect manageShopFilters={manageShopFilters} selectedShops={shopFilters} />
       {sections.map(section => (
         <Section 
           key={section._id} 
           header={section.name}
-          products={preperProductsList(products, section.name, [])}
+          products={preperProductsList(products, section.name, shopFilters)}
           type="list"
         />)
       )}
