@@ -8,12 +8,12 @@ export const config = {
         {
             url: '/products',
             name: 'Produkty',
-            icon: "MdStore"
+            icon: "FaShoppingCart"
         },
         {
             url: '/list',
             name: 'Lista zakupów',
-            icon: "FaShoppingCart"
+            icon: "FaListAlt"
         },
         {
             url: '/manage',
