@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Section } from '../../components/Section/Section';
 import { Spinner } from '../../components/Spinner/Spinner';
+import { SectionHeader } from '../../components/SectionHeader/SectionHeader';
 import { ShopsMultiselect } from '../../components/ShopsMultiselect/ShopsMultiselect';
 import { getAllProducts } from '../../redux/actions/products.actions';
 import { getAllSections } from '../../redux/actions/sections.actions';
@@ -55,7 +56,10 @@ export const Products = (props) => {
 
   return (
     <div className="page products">
+      <SectionHeader name="Pokaż produkty w" />
       <ShopsMultiselect manageShopFilters={manageShopFilters} selectedShops={shopFilters} />
+      <div className="linebreak"></div>
+
       {sections.map(section => (
         <Section 
           key={section._id} 

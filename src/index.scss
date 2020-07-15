@@ -47,6 +47,13 @@ body {
     font-weight: bold;
 }
 
+.linebreak {
+    width: 90%;
+    height: 2px;
+    margin-bottom: 4rem;
+    background: var(--color-primary);
+}
+
 @mixin basic-input {
     padding: 0.6rem 2rem;
     border-radius: var(--border-radius);
