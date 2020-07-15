@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { FaPowerOff } from 'react-icons/fa';
+import { confirmAlert } from 'react-confirm-alert'; // test
 
 import { logout } from '../../redux/actions/user.actions';
 
@@ -20,13 +21,27 @@ export const Header = (props) => {
     else if(location === '' || location === 'register' || location === 'login') return "Witaj!"
   }
 
-  const handleLogout = () => dispatch(logout())
+  const handleLogout = () => dispatch(logout());
+
+  const confirm = () => () => confirmAlert({  
+    title: "Na pewno chcesz usunąc się wylogować?",   
+    buttons: [
+        {
+            label: "Tak",
+            onClick: () => handleLogout()
+        },
+        {
+            label: "Nie",
+            onClick: () => {}
+        }
+    ]
+  });
 
   return (
     <div className="header">
       <h1 className="header__title">{title()}</h1>
       {isAuthenticated && (
-        <div className="header__icon" onClick={handleLogout}>
+        <div className="header__icon" onClick={confirm()}>
           <FaPowerOff/>
         </div>
       )}
